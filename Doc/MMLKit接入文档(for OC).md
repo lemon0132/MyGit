@@ -35,16 +35,16 @@
 ```
 创建Config（模型地址）、创建Predictor
 ```
-    NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"Segmentation.bundle/humanseg-cpu" ofType:@"nb"];
-    self.portraitSegmentor = [MMLPortraitSegmentor create:modelPath error:&error];
+NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"Segmentation.bundle/humanseg-cpu" ofType:@"nb"];
+self.portraitSegmentor = [MMLPortraitSegmentor create:modelPath error:&error];
 ```
 执行Predict、获取Output
 ```
-    MMLPSData *output = (MMLPSData *)[self.portraitSegmentor inferWithPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) error:nil];
+MMLPSData *output = (MMLPSData *)[self.portraitSegmentor inferWithPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) error:nil];
 ```
 释放Predictor
 ```
-    Predictor不需要特殊的释放操作
+Predictor不需要特殊的释放操作
 ```
 ### 手势识别
 引入头文件
@@ -53,19 +53,19 @@
 ```
 创建Config（模型地址）、创建Predictor
 ```
-    NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/HandGesture.bundle/"];
-    self.gestureRecognizer = [MMLHandGestureDetector createGestureDetectorWithModelPath:modelPath error:&error];
+NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/HandGesture.bundle/"];
+self.gestureRecognizer = [MMLHandGestureDetector createGestureDetectorWithModelPath:modelPath error:&error];
 ```
 执行Predict、获取Output
 ```
-    //执行predict
-    [self.gestureRecognizer detectWithUIImage:self.image complete:^(MMLHandGestureDetectResult *result, NSError *error){
-        //result为获取的output
-    }];
+//执行predict
+[self.gestureRecognizer detectWithUIImage:self.image complete:^(MMLHandGestureDetectResult *result, NSError *error){
+    //result为获取的output
+}];
 ```
 释放Predictor
 ```
-    Predictor不需要特殊的释放操作
+Predictor不需要特殊的释放操作
 ```
 ### 视频超分
 引入头文件
@@ -74,17 +74,17 @@
 ```
 创建Config（模型地址）、创建Predictor
 ```
-    NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/SuperResolution.bundle"];
-    MMLVideoSuperResolutionConfig *config = [[MMLVideoSuperResolutionConfig alloc] init];
-    config.modelDir = modelPath;
-    MMLVideoSuperResolutionor *sVideo = [MMLVideoSuperResolutionor createInstanceWithConfig:config error:&error];
+NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/SuperResolution.bundle"];
+MMLVideoSuperResolutionConfig *config = [[MMLVideoSuperResolutionConfig alloc] init];
+config.modelDir = modelPath;
+MMLVideoSuperResolutionor *sVideo = [MMLVideoSuperResolutionor createInstanceWithConfig:config error:&error];
 ```
 执行Predict、获取Output
 ```
-    // 执行predict，获取的newImg为output
-    UIImage *newImg = [self.superVideo superResolutionWithUIImage:self.image scale:1.0 error:&error];
+// 执行predict，获取的newImg为output
+UIImage *newImg = [self.superVideo superResolutionWithUIImage:self.image scale:1.0 error:&error];
 ```
 释放Predictor
 ```
-    Predictor不需要特殊的释放操作
+Predictor不需要特殊的释放操作
 ```
