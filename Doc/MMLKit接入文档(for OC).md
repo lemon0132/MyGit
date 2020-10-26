@@ -1,7 +1,7 @@
 # MMLKit接入文档(for OC)
 ## 导入SDK
 |能力 |对应SDK | 
-|---|---|---|---|
+|---|---|
 | 人像分割| MMLPortraitSegmentation.framework | 
 | 手势识别| MMLHandGestureDetection.framework | 
 | 视频超分| MMLAIVideoSuperResolution.framework | 
@@ -9,7 +9,7 @@
 
 ## 添加第三方依赖
 |依赖 | 版本| 
-|---|---|---|---|
+|---|---|
 |opencv2| 3.4.1| 
 |ProtocolBuffers| 1.0.0|
 |ZipArchive| 1.0.0| 
@@ -18,13 +18,14 @@
 |libjpeg| opencv3.4.1对应libjpeg版本|
 
 ## 添加系统framework
+无
 
 ## 配置环境
 无
 
 ## 资源文件
 将模型文件放置到工程适当位置，创建能力实例的时候需要读取模型文件。
-![模型文件](https://agroup-bos-bj.cdn.bcebos.com/bj-f8bf61fab8405a96b19dd7c61838036eae5cf293)
+![模型文件](/Doc/Resources/21_1.png)
 
 ## 使用方法
 ### 人像分割
@@ -39,11 +40,11 @@
 ```
 执行Predict、获取Output
 ```
-MMLPSData *output = (MMLPSData *)[self.portraitSegmentor inferWithPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) error:nil];
+    MMLPSData *output = (MMLPSData *)[self.portraitSegmentor inferWithPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) error:nil];
 ```
 释放Predictor
 ```
-Predictor不需要特殊的释放操作
+    Predictor不需要特殊的释放操作
 ```
 ### 手势识别
 引入头文件
@@ -57,14 +58,14 @@ Predictor不需要特殊的释放操作
 ```
 执行Predict、获取Output
 ```
-//执行predict
-[self.gestureRecognizer detectWithUIImage:self.image complete:^(MMLHandGestureDetectResult *result, NSError *error){
-    //result为获取的output
-}];
+    //执行predict
+    [self.gestureRecognizer detectWithUIImage:self.image complete:^(MMLHandGestureDetectResult *result, NSError *error){
+        //result为获取的output
+    }];
 ```
 释放Predictor
 ```
-Predictor不需要特殊的释放操作
+    Predictor不需要特殊的释放操作
 ```
 ### 视频超分
 引入头文件
@@ -80,10 +81,10 @@ Predictor不需要特殊的释放操作
 ```
 执行Predict、获取Output
 ```
-// 执行predict，获取的newImg为output
-UIImage *newImg = [self.superVideo superResolutionWithUIImage:self.image scale:1.0 error:&error];
+    // 执行predict，获取的newImg为output
+    UIImage *newImg = [self.superVideo superResolutionWithUIImage:self.image scale:1.0 error:&error];
 ```
 释放Predictor
 ```
-Predictor不需要特殊的释放操作
+    Predictor不需要特殊的释放操作
 ```
