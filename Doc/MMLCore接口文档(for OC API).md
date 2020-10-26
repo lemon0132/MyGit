@@ -1,4 +1,4 @@
-# MMLCore接口文档(for OC)
+# MMLCore接口文档(for OC API)
 ## MMLBaseMachine
 Machine的基类 
 具体实现包含MMLPaddleCPUMachine、MMLPaddleGPUMachine

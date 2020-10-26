@@ -44,10 +44,10 @@ cd PaddleMMLCore/MMLDemo/iOS
 open MMLDemo.xcodeproj
 ```
 2.配置调试真机及Apple ID
-![图片](/Doc/Resources/1-1.png)
+![图片](/Doc/Resources/1_1.png)
 
 3.运行示例工程
-![图片](/Doc/Resources/1-2.png)
+![图片](/Doc/Resources/1_2.png)
 |类名 | 说明 | 
 |---|---|
 |ViewController |MML（OC & C++）以GPU、CPU作为backend的load及predict的demo code |
