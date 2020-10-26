@@ -14,13 +14,13 @@ MMLCore是一种业界领先的，跨平台的，面向移动开发者的，AI�
 ###### Native C++ API
 
 | 依赖 | 版本 | 体积 | 
-|-------|------|-------|
-| MML Native | - | 51.5MB(armv7), 51MB(arm64) |
+|---|---|---|
+| MML Native | 0.0.9 | 51.5MB(armv7), 51MB(arm64) |
 
 ###### OC API
 |依赖| 版本|体积 | 
 |---|---|---|
-|MML|1.0.0|3.3MB|
+|MML|0.0.9|3.3MB|
 |opencv|3.4.1|128.6MB|
 |paddleLite|1.0.0|102.2MB|
 |paddle_mobile|1.0.0|14.1MB|
@@ -30,12 +30,11 @@ MMLCore是一种业界领先的，跨平台的，面向移动开发者的，AI�
 
 #### Android API 依赖
 |依赖|版本| 体积 | 
-|---|---|---|---|
+|---|---|---|
 | MML Native|-|51.5MB(armv7), 51MB(arm64) |
 
 ### 4. Demo Project
-#### 示例工程说明
-iOS示例工程包含了Native C++ API和OC API的demo调用示例，Native C++ API和OC API分别包含CPU和GPU两种backend，一共4种加载和预测的方式。针对C++和OC的CPU/GPU backend分别是对齐的，模型的加载和预测能力一致。但是CPU和GPU之间是隔离的，预测所使用的模型是不一样的。
+iOS示例工程包含了Native C++ API和OC API的demo调用示例，Native C++ API和OC API分别包含CPU和GPU两种backend，一共4种加载和预测的方式。针对C++API（在iOS上）和OC API的CPU/GPU backend分别是对齐的，模型的加载和预测能力一致。但是CPU和GPU backend之间是隔离的，预测所使用的模型是不一样的。
 
 #### 示例IOS工程部署
 1.组装工程 
@@ -64,7 +63,9 @@ open MMLDemo.xcodeproj
 
 ## 二、接口文档
 [接口文档 for Native C++ API on iOS](http://agroup.baidu.com/wangzhiyong04/md/article/3455104)
+<br>
 [接口文档 for OC API ](http://agroup.baidu.com/wangzhiyong04/md/article/3461715)
+
 [TODO——接口文档 for Android API ]()
 
 ## 三、接入文档
