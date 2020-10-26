@@ -5,25 +5,26 @@
 
 ### 兼容性
 支持平台：iOS、Android。
+<br>
 支持语言：OC、Java。
 
 ### 依赖和体积
-iOS平台
+#### iOS平台
 |依赖 | 版本| 体积 |
-|---|---|---|---|
-|MMLHandGestureDetection| 0.0.1| 927KB |
-|MMLPortraitSegmentation| 0.0.1| 10.9MB |
-|MMLAIVideoSuperResolution| 0.0.1| 1.7MB |
+|---|---|---|
+|MMLHandGestureDetection| 0.0.9| 927KB |
+|MMLPortraitSegmentation| 0.0.9| 10.9MB |
+|MMLAIVideoSuperResolution| 0.0.9| 1.7MB |
+|ProtocolBuffers| 0.0.9| 17.7MB |
+|ZipArchive| 0.0.9| 3.9MB |
 |opencv2| 3.4.1| 128.6MB |
-|ProtocolBuffers| 1.0.0| 17.7MB |
-|ZipArchive| 1.0.0| 3.9MB |
 |libpng| opencv3.4.1对应libpng版本| 3.1MB |
 |libwebp| opencv3.4.1对应libwebp版本| 7.5MB | 
 |libjpeg| opencv3.4.1对应libjpeg版本| 3.9MB | 
 
 
-Android平台
-【TODO】
+#### Android平台
+
 
 ### Demo Project
 #### iOS平台
@@ -46,7 +47,7 @@ Android平台
 
 
 
-##2. 接口文档
+## 2. 接口文档
 [接口文档 for OC](http://agroup.baidu.com/wangzhiyong04/md/article/3468275)
 
 
