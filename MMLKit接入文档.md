@@ -55,11 +55,11 @@
 
 
 ## 2. 接口文档
-[接口文档 for OC](http://agroup.baidu.com/wangzhiyong04/md/article/3468275)
+[接口文档 for OC](/Doc/MMLKit接口文档(for OC).md)
 
 
 ## 3. 接入文档
-[接入文档 for OC](http://agroup.baidu.com/wangzhiyong04/md/article/3468283)
+[接入文档 for OC](/Doc/MMLKit接入文档(for OC).md)
 
 
 
