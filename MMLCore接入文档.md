@@ -5,8 +5,8 @@ MMLCore是一种业界领先的，跨平台的，面向移动开发者的，AI�
 
 
 ### 2. 兼容性
-支持平台：iOS、Android、Native C++ 。
-支持Backend：支持PaddleMobile/Paddle-Lite/BML(LR/GBDT)等Backend可供选择，同时支持Backend平行切换。 
+支持平台：iOS、Android、Native C++ 。<br>
+支持Backend：支持PaddleMobile/Paddle-Lite/BML(LR/GBDT)等Backend。 
 
 
 ### 3. 依赖和体积
@@ -41,37 +41,35 @@ iOS示例工程包含了Native C++ API和OC API的demo调用示例，Native C++ 
 ```
 git clone https://github.com/PaddlePaddle/LiteKit.git
 cd PaddleMMLCore/MMLDemo/iOS
-pods install
 open MMLDemo.xcodeproj
 ```
 2.配置调试真机及Apple ID
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-afca654008a9396cf3c9f219867eae4f219418af)
+![图片](/Doc/Resources/1-1.png)
 
 3.运行示例工程
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-38ae6dc1d29f975995e990ed09e93b0bb7d0f115)
-说明：
+![图片](/Doc/Resources/1-2.png)
 |类名 | 说明 | 
-|---|---|---|---|
+|---|---|
 |ViewController |MML（OC & C++）以GPU、CPU作为backend的load及predict的demo code |
 | ViewController+MMLCore_CPP | MML Native C++ API load demo code|
 | ViewController+MMLCore_OC | MML OC API load demo code|
 
 #### 部署Android示例工程  
-1. 首先编译[MMLCore/MML/C++](MMLKit/C%2B%2B/README.md), 生成`libmml_framework.so`
-2. 然后编译[MMLCore/MML/Android](MML/Android/README.md), 生成`mmlcore-debug.aar`
-3. 最后编译[MMLCore/MMLDemo/Android](MMLDemo/Android/README.md), 通过Android studio 打开项目即可运行demo
+1. 首先编译[MMLCore/MML/C++](MMLCore/MML/C%2B%2B/README.md), 生成`libmml_framework.so`
+2. 然后编译[MMLCore/MML/Android](MMLCore/MML/Android/README.md), 生成`mmlcore-debug.aar`
+3. 最后编译[MMLCore/MMLDemo/Android](MMLCore/MMLDemo/Android/README.md), 通过Android studio 打开项目即可运行demo
 
 ## 二、接口文档
-[接口文档 for Native C++ API on iOS](http://agroup.baidu.com/wangzhiyong04/md/article/3455104)
+[接口文档 for Native C++ API](/Doc/MMLCore接口文档(for%20Native%20C%2B%2B%20API).md)
 <br>
-[接口文档 for OC API ](http://agroup.baidu.com/wangzhiyong04/md/article/3461715)
+[接口文档 for OC API ](/Doc/MMLCore接口文档(for%20OC%20API).md)
 <br>
 [接口文档 for Android API ]()
 
 ## 三、接入文档
-[接入文档 for OC API ](http://agroup.baidu.com/wangzhiyong04/md/article/3460708)
+[接入文档 for OC API ](/Doc/MMLCore接入文档(for%20OC%20API).md)
 <br>
-[接入文档 for Native C++ API on iOS](http://agroup.baidu.com/wangzhiyong04/md/article/3460370)
+[接入文档 for Native C++ API on iOS](/Doc/MMLCore接入文档(for%20Native%20C%2B%2B%20API%20on%20iOS).md)
 <br>
 [接入文档 for Native C++ API on Android]()
 <br>

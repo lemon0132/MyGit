@@ -55,11 +55,11 @@ open MMLKitDemo.xcworkspace
 
 
 ## 2. 接口文档
-[接口文档 for OC](/Doc/MMLKit接口文档(for_OC).md)
+[接口文档 for OC](/Doc/MMLKit接口文档(for%20OC).md)
 
 
 ## 3. 接入文档
-[接入文档 for OC](/Doc/MMLKit接入文档(for_OC).md)
+[接入文档 for OC](/Doc/MMLKit接入文档(for%20OC).md)
 
 
 
