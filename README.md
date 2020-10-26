@@ -57,7 +57,7 @@ open MMLDemo.xcodeproj
 | ViewController+MMLCore_OC | MML OC API load demo code|
 
 #### 部署Android示例工程  
-1. 首先编译[MMLCore/MML/C++](MML/CC%2B%2B/README.md), 生成`libmml_framework.so`
+1. 首先编译[MMLCore/MML/C++](MMLKit/C%2B%2B/README.md), 生成`libmml_framework.so`
 2. 然后编译[MMLCore/MML/Android](MML/Android/README.md), 生成`mmlcore-debug.aar`
 3. 最后编译[MMLCore/MMLDemo/Android](MMLDemo/Android/README.md), 通过Android studio 打开项目即可运行demo
 
