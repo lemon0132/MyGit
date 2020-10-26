@@ -8,7 +8,7 @@ Native C++ iOS产物依赖及版本：
 |---|---|  
 |Xcode| 11.3以上 |  
 
-[苹果官网](https://developer.apple.com/download/more/)安装[Xcode 11.3](https://download.developer.apple.com/Developer_Tools/Xcode_11.3/Xcode_11.3.xip)（或从AppStore下载11.3以上版本Xcode）
+[官网下载](https://developer.apple.com/download/more/)安装[Xcode 11.3](https://download.developer.apple.com/Developer_Tools/Xcode_11.3/Xcode_11.3.xip)（或从AppStore下载11.3以上版本Xcode）
 
 
 ### 2. 构建选项
@@ -55,9 +55,8 @@ sh product_build.sh
 
 ## 三、使用
    MML OC API执行推理的时候。
-   首先，需要确定模型、所使用的backend、模型和backend是否匹配、以及其他config参数，并创建config。
-   然后，通过Service的loadMachineWithConfig:error:对config进行加载，生成预测的machine，用户仅需要持有/操作machine，不需要对backend的实例进行直接管理。
-   machine直接对用户预测的服务。
+   <br>首先，需要确定模型、所使用的backend、模型和backend是否匹配、以及其他config参数，并创建config。
+   <br>然后，通过Service的loadMachineWithConfig:error:对config进行加载，生成预测的machine，用户仅需要持有/操作machine，不需要对backend的实例进行直接管理。machine直接对用户预测的服务。
 
 
 ### 1) 引入头文件
