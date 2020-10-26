@@ -39,10 +39,10 @@
 
 ###### 示例工程部署
 ```
-    git clone https://github.com/PaddlePaddle/LiteKit.git
-    cd MMLKit/MMLKitDemo/iOS/MMLKitDemo
-    pod install --repo-update
-    open MMLKitDemo.xcworkspace
+git clone https://github.com/PaddlePaddle/LiteKit.git
+cd MMLKit/MMLKitDemo/iOS/MMLKitDemo
+pod install --repo-update
+open MMLKitDemo.xcworkspace
 ```
 运行工程可在真机测试机上查看效果。
 
