@@ -24,7 +24,13 @@
 
 
 #### Android平台
-
+|依赖 | 版本| 体积 |
+|---|---|---|
+|gesturerecognize | 0.0.9 | 50KB |
+|superresolution | 0.0.9 | 45KB |
+|portraitsegmentation | 0.0.9 | 437KB |
+|mmlkitdependency | 0.0.9 | 3.4MB |
+|thirdpartydependency | 0.0.9 | 11.8MB |
 
 ### Demo Project
 #### iOS平台
@@ -43,7 +49,8 @@
 
 #### Android平台
 1. 打开Android Studio，点击File->Open...，选择MMLKitDemo/Android目录
-2. Gradle sync成功后，点击Run安装运行到真机上（Demo中视频检测依赖摄像头输入）
+2. 参考[MMLKit README](/MMLKit/MMLKitDemo/Android/README.md)文档，下载并放置依赖aar至对应位置
+3. 点击Run安装运行到真机上（Demo中视频检测依赖摄像头输入）
 
 
 
