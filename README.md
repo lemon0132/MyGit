@@ -64,7 +64,7 @@ open MMLDemo.xcodeproj
 <br>
 [接口文档 for OC API ](/Doc/MMLCore接口文档(for%20OC%20API).md)
 <br>
-[接口文档 for Android API ]()
+[接口文档 for Android API ](/Doc/MMLCore接口文档(for%20Android%20API).md)
 
 ## 三、接入文档
 [接入文档 for OC API ](/Doc/MMLCore接入文档(for%20OC%20API).md)
