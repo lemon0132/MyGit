@@ -1,4 +1,4 @@
-# MMLCore接口文档(for Android API)
+# MMLCore接口文档(for Android Java API)
 ## MMLBaseMachine
 Machine的基类 
 具体实现类为MMLPaddleLiteMachine
@@ -111,7 +111,7 @@ public void setInputGraphId(int inputGraphId);
 
 /**
  * 数据getter and setter
- * 设置input数据和getoutput数据
+ * 设置input数据和获取output数据
  */
 public float[] getFloatData();
 public byte[] getByteData();
