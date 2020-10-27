@@ -1,21 +1,18 @@
-# MMLKit接入文档(for OC)
+# MMLKit接入文档(for Android)
 ## 导入SDK
 |能力 |对应SDK | 
 |---|---|
-| 人像分割| MMLPortraitSegmentation.framework | 
-| 手势识别| MMLHandGestureDetection.framework | 
-| 视频超分| MMLAIVideoSuperResolution.framework | 
+| 人像分割| portraitsegmentation-0.0.9.aar | 
+| 手势识别| gesturerecognize-0.0.9.aar | 
+| 视频超分| superresolution-0.0.9.aar | 
 
 
 ## 添加第三方依赖
 |依赖 | 版本| 
 |---|---|
-|opencv2| 3.4.1| 
-|ProtocolBuffers| 1.0.0|
-|ZipArchive| 1.0.0| 
-|libpng| opencv3.4.1对应libpng版本| 
-|libwebp| opencv3.4.1对应libwebp版本|
-|libjpeg| opencv3.4.1对应libjpeg版本|
+|mmlkitdependency-0.0.9.aar| 0.0.9| 
+|thirdpartydependency-0.0.9.aar| 0.0.9|
+
 
 ## 添加系统framework
 无
@@ -24,67 +21,90 @@
 无
 
 ## 资源文件
-将模型文件放置到工程适当位置，创建能力实例的时候需要读取模型文件。
-![模型文件](/Doc/Resources/21_1.png)
+将模型文件放置到工程适当位置，创建能力实例的时候需要读取模型文件位置。
 
 ## 使用方法
 ### 人像分割
 引入头文件
 ```
-#import <MMLPortraitSegmentation/MMLPortraitSegmentor.h>
+import com.baidu.mmlkit.portraitsegmentationsdk.MMLPortraitSegmentation;
+import com.baidu.mmlkit.portraitsegmentationsdk.MMLPortraitSegmentationConfig;
 ```
+
 创建Config（模型地址）、创建Predictor
 ```
-NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"Segmentation.bundle/humanseg-cpu" ofType:@"nb"];
-self.portraitSegmentor = [MMLPortraitSegmentor create:modelPath error:&error];
+MMLPortraitSegmentationConfig config = new MMLPortraitSegmentationConfig();
+config.setModelUrl(modelPath); // modelPath为模型文件路径（含模型文件名称）
+portraitSegmentation = new MMLPortraitSegmentation(config);
 ```
-执行Predict、获取Output
+
+执行预测
 ```
-MMLPSData *output = (MMLPSData *)[self.portraitSegmentor inferWithPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) error:nil];
+portraitSegmentation.predictor(inputData, rgbaImage.getWidth(), rgbaImage.getHeight());
 ```
+
 释放Predictor
 ```
-Predictor不需要特殊的释放操作
+portraitSegmentation.release();
 ```
 ### 手势识别
 引入头文件
 ```
-#import <MMLHandGestureDetection/MMLHandGestureDetector.h>
+import com.baidu.gesturelibrary.HandGestureDetectResult;
+import com.baidu.gesturelibrary.HandGestureDetector;
 ```
-创建Config（模型地址）、创建Predictor
+
+创建Predictor
 ```
-NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/HandGesture.bundle/"];
-self.gestureRecognizer = [MMLHandGestureDetector createGestureDetectorWithModelPath:modelPath error:&error];
+HandGestureDetector.init(this, modelPath) // 其中modelPath为模型文件路径（含模型文件名字）
 ```
+
 执行Predict、获取Output
 ```
-//执行predict
-[self.gestureRecognizer detectWithUIImage:self.image complete:^(MMLHandGestureDetectResult *result, NSError *error){
-    //result为获取的output
-}];
+HandGestureDetectResult result = HandGestureDetector.detect(imageData);
 ```
+
 释放Predictor
 ```
-Predictor不需要特殊的释放操作
+HandGestureDetector.release();
 ```
+
 ### 视频超分
 引入头文件
 ```
-#import <MMLAIVideoSuperResolution/MMLAIVideoSuperResolution.h>
+import com.baidu.sr.SrBridge;
 ```
+
 创建Config（模型地址）、创建Predictor
 ```
-NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/SuperResolution.bundle"];
-MMLVideoSuperResolutionConfig *config = [[MMLVideoSuperResolutionConfig alloc] init];
-config.modelDir = modelPath;
-MMLVideoSuperResolutionor *sVideo = [MMLVideoSuperResolutionor createInstanceWithConfig:config error:&error];
+Long handle = SrBridge.nativeInitSr(modelPath); // 其中modelPath为模型文件路径（含模型文件名字）
 ```
+
 执行Predict、获取Output
 ```
-// 执行predict，获取的newImg为output
-UIImage *newImg = [self.superVideo superResolutionWithUIImage:self.image scale:1.0 error:&error];
+Bitmap lowBitmap; // input待超分bitmap
+int byteCount = lowBitmap.getByteCount();
+ByteBuffer buf  = ByteBuffer.allocate(byteCount);
+lowBitmap.copyPixelsToBuffer(buf);
+byte[] rgba = buf.array();
+byte[] targetRGBA = SrBridge.nativePredictRGBA(
+                handle,      // 创建的predictorhandler
+                rgba,        // 待超分rgba数据
+                lowBitmap.getHeight(),
+                lowBitmap.getWidth(),
+                scale         // scale 倍数
+        );
+
+or
+
+ Bitmap bitmap2 = SrBridge.nativePredictBitmap(
+                    handle,       // 创建的predictorhandler
+                    lowBitmap,    // 待超分bitmap
+                    scale         // scale 倍数
+            );
 ```
 释放Predictor
 ```
-Predictor不需要特殊的释放操作
+// release SR machine
+SrBridge.nativeReleaseSrSdk(handle);
 ```
