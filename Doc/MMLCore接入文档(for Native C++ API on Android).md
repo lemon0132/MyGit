@@ -3,7 +3,7 @@
 
 ## 一、编译
 ### 1. 构建环境
-Native C++ iOS产物依赖及版本：
+Native C++ Android产物依赖及版本：
 |环境依赖 | 版本 |
 |---|---|  
 | ndk | android-ndk-r16b |
@@ -61,7 +61,7 @@ Native C++ iOS产物依赖及版本：
 ```
 // 创建 MML Native C++ Config
 
-    // CPU config
+    // CPU/GPU由模型决定
     mml_framework::MMLConfig config;
     config.machine_type = mml_framework::MMLConfig::MachineType::PaddleLite;
 
@@ -73,16 +73,6 @@ Native C++ iOS产物依赖及版本：
     paddle_config.model.model_from_file.data = ""; // 模型文件地址String char *
     paddle_config.model.model_from_file.size = length; // 模型文件地址String length
     
-    // GPU config
-    mml_framework::MMLConfig config;
-    config.machine_type = mml_framework::MMLConfig::MachineType::PaddleiOSGPU;
-    
-    mml_framework::MMLConfig::PaddleiOSGPUConfig paddle_gpu_config;
-    config.machine_config.paddle_ios_gpu_config = paddle_gpu_config;
-    
-    config.model_file_name = ""; // 模型文件地址String char *
-    config.param_file_name = length; // 模型文件地址String length
-    config.modelUrl = [gpuDir UTF8String]; // mv6s是多输出模型
 ```
 ### 3) 创建Service
 ```

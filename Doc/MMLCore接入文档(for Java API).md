@@ -6,116 +6,90 @@
 Native C++ iOS产物依赖及版本：
 |环境依赖 | 版本 |
 |---|---|  
-|Xcode| 11.3以上 |  
+| ndk | android-ndk-r16b |
+| c++ | ANDROID_STL=c++_shared |
 
-安装[Xcode 11.3](https://download.developer.apple.com/Developer_Tools/Xcode_11.3/Xcode_11.3.xip)（https://developer.apple.com/download/more/, 或从AppStore下载11.3以上版本Xcode）
 
 
 ### 2. 构建选项
-OTHER_CFLAGS="-fembed-bitcode"
-
+|cmake构建选项 | 选项 |
+|---|---|  
+| -DANDROID_TOOLCHAIN_NAME | llvm |
+| -DANDROID_TOOLCHAIN | clang |
+|-DANDROID_ARM_NEON | ON |
+|-DANDROID_STL | c++_shared  |
 
 
 ### 3. 构建步骤
-```
- git clone https://github.com/PaddlePaddle/LiteKit.git
- cd /PaddleMMLCore/MML/iOS+/build-ios 
- bash ./product_build.sh 
- 
-构建产物位置：
-产物目录PRODUCT_DIR = ./output/MML.framework
-```
+根据文档[MMLCore/MML/C++](MMLCore/MML/C%2B%2B/README.md), 生成`libmml_framework.so`
 
 ## 二、集成
 ### 1. 导入SDK
-在build phases中导入MML OC SDK： MML.framework
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-ceb2ce71137ecb94078a188de6e3247b603a7d78)
+将MMLNative的可执行文件`libmml_framework.so`和头文件放在工程目录下
+
 
 ### 2. 添加第三方依赖
-在build phases中添加MML OC SDK相关依赖
-|依赖| 版本|
-|---|---|---|---|
-|opencv|3.4.1|
-|paddleLite|1.0.0|
-|paddle_mobile|1.0.0|
-|ProtocolBuffers|1.0.0|
-|ZipArchive|1.0.0|
+无
 
 ### 3. 添加系统framework
-在工程中添加一个swift文件，以支持swift相关库的使用。如果已经在使用swift，跳过此步。
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-4db91d738829650242deeaa1fbe5364d1e86d2c2)
+无
 
 ### 4. 配置环境
-检查build setting中的framework Search Paths中是否已经正确配置引用的frameowkr paths。
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-101192ed8f96b07a1d9a33ccab28e71ea925f084)
+无
 
 ### 5. 资源文件
-如果使用PaddleMobileGPU作为backend，需要将paddle-mobile-metallib.metallib文件拷贝至main bundle下
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-6c133a4f572eeb6e90ec68a862849662c5f2cf6d)
+无
 
 ## 三、使用
-   MML OC API执行推理的时候。
+   MML Native C++ API执行推理的时候。
    首先，需要确定模型、所使用的backend、模型和backend是否匹配、以及其他config参数，并创建config。
-   然后，通过Service的loadMachineWithConfig:error:对config进行加载，生成预测的machine，用户仅需要持有/操作machine，不需要对backend的实例进行直接管理。
-   machine直接对用户预测的服务。
+   然后，通过config 对Service进行load，Service直接管理预测backend，用户仅需要持有/释放service，不需要对backend的实例进行直接管理。
+   Service直接对用户提供填充input，预测、获取output服务。
+   Service提供指针类型创建（new）和std::shared_ptr创建两种方式，其中指针类型创建（new）需要手动delete释放Service内存。
     
 
 ### 1) 引入头文件
 ```
-// import MML OC header
-
-#import <MML/MML.h> // Umbrella header
-
-#import <MML/MMLMachineConfig.h> // 默认的、基础的MMLMachine Config
-
-#import <MML/MMLPaddleConfig.h> // GPU backend需要使用的config
-
-#import <MML/MMLMachineService.h> // MMLMachineService，用于加载config，创建预测machine
-
-#import <MML/MMLDataProcess.h> // MML提供的前后处理相关工具，包括图片旋转、缩放、剪裁等
+// import MML Native C++ header
+#import "mml_inference_api.h"
 ```
 ### 2) 创建Config （含模型转换）
 ```
 // 创建 MML Native C++ Config
 
     // CPU config
-    // construct mml config
-    MMLMachineConfig *machineConfig = [[MMLMachineConfig alloc] init];
-    machineConfig.modelPath = @""; // example：模型路径
-    machineConfig.machineType = MMLPaddleCPU;
-    
-    /************************************************************/
-    // GPU config
-    PaddleGPUConfig *modelConfig = [[PaddleGPUConfig alloc] init];
-    modelConfig.dims = @[@(kMMLInputBatch), @(kMMLInputChannel), @(kMMLInputHeight), @(kMMLInputWidth)];
-    modelConfig.useMPS = YES;
-    modelConfig.useAggressiveOptimization = YES;
-    modelConfig.computePrecision = PrecisionTypeFloat16;
-    modelConfig.modelPrecision = PrecisionTypeFloat32;
-    modelConfig.metalLibPath = [NSBundle.mainBundle pathForResource:@"paddle-mobile-metallib" ofType:@"metallib"];
-    modelConfig.metalLoadType = LoadMetalInCustomMetalLib;
-    
-    // construct inf engine config
-    MMLPaddleConfig *paddleConfig = [[MMLPaddleConfig alloc] init];
-    paddleConfig.netType = CustomNetType;
-    paddleConfig.paddleGPUConfig = modelConfig;
-    
-    // construct mml config
-    MMLMachineConfig *machineConfig = [[MMLMachineConfig alloc] init];
-    machineConfig.modelPath = @""; // example：模型路径
-    machineConfig.engineConifg = paddleConfig;
-    machineConfig.machineType = MMLPaddleGPU;
+    mml_framework::MMLConfig config;
+    config.machine_type = mml_framework::MMLConfig::MachineType::PaddleLite;
 
+    mml_framework::MMLConfig::PaddleLiteConfig paddle_config;
+    paddle_config.powermode = mml_framework::MMLConfig::PaddleLiteConfig::PaddleLitePowerMode::LITE_POWER_NO_BIND;
+    paddle_config.threads = 1;
+    paddle_config.model_type = mml_framework::MMLConfig::PaddleLiteConfig::LITE_MODEL_FROM_FILE;
+
+    paddle_config.model.model_from_file.data = ""; // 模型文件地址String char *
+    paddle_config.model.model_from_file.size = length; // 模型文件地址String length
+    
+    // GPU config
+    mml_framework::MMLConfig config;
+    config.machine_type = mml_framework::MMLConfig::MachineType::PaddleiOSGPU;
+    
+    mml_framework::MMLConfig::PaddleiOSGPUConfig paddle_gpu_config;
+    config.machine_config.paddle_ios_gpu_config = paddle_gpu_config;
+    
+    config.model_file_name = ""; // 模型文件地址String char *
+    config.param_file_name = length; // 模型文件地址String length
+    config.modelUrl = [gpuDir UTF8String]; // mv6s是多输出模型
 ```
 ### 3) 创建Service
 ```
-//创建machine
+//创建service
 
-    // 加载模型
-    NSError *aError = nil;
-    MMLMachineService *service = [[MMLMachineService alloc] init];
-    MMLBaseMachine *mmlMachine = [service loadMachineWithConfig:machineConfig error:&aError];
-    //如果 aError==nil && mmlMachine!=nil,表示创建成功 
+    //std::shared_ptr类型service
+    std::shared_ptr<mml_framework::MMLMachineService> service = mml_framework::CreateMMLMachineService(config);
+
+    //指针类型service
+    mml_framework::MMLMachineService *service = new mml_framework::MMLMachineService();
+    int result = service->load(config);
 ```
 ### 4) 前处理
 ```
@@ -126,45 +100,70 @@ OTHER_CFLAGS="-fembed-bitcode"
 ### 5) 创建Input
 ```
 // create input data
-    // 数据准备
-    NSArray *dims = @[@(n), @(c), @(h), @(w)]; // input的dims
-    // 创建 inputData
-    MMLShapedData *shapeData = [[MMLShapedData alloc] initWithData:inputDemoData dataSize:n*w*h*c dims:dims]; 
-    MMLData *inputData = [[MMLData alloc] initWithData:shapeData type:TMMLDataTypeMMLShapedData];
+    //  data shape
+    mml_framework::shape_t shape({1, 1, 192, 192});// example shape
+    // 获取第0个input
+    std::unique_ptr<mml_framework::MMLData> inputData = service->getInputData(0);
+    mml_framework::MMLTensor *aInput = inputData->mmlTensor;
+    //resize input
+    aInput->Resize(shape);
+    // 获取input存储数据的指针
+    auto *data = aInput->mutable_data<float>();// example：float数据
+    //填充input数据
+    memcpy(data, inputDemoData, inputDemoDataSize*sizeof(float));// example float数据
 ```
 ### 6) Machine执行predict
 ```
 // 执行预测
-    // run sync
-    NSError *error = nil;
-    MMLData *outputData = [mmlMachine predictWithInputData:inputData error:&error];
+    service->run();
 ```
 
 ### 7) 读取output
 ```
-    预测返回MMLData *outputData即为outputData
+// get output
+    // 读取第0个output
+    std::unique_ptr<const mml_framework::MMLData> outputData = service->getOutputData(0);
+    const mml_framework::MMLTensor *output_tensor = outputData->mmlTensor;
+    // 读取output的shape
+    int64_t outputDataSize = demo_shapeProduction(output_tensor->shape());
+    //计算数据长度
+    int64_t dataSizex = outputData->dataLength;
+    float *output = (float *)malloc(sizeof(float)*outputDataSize); // example output data
+    // 读取output数据
+    memcpy(output, output_tensor->data<float>(), sizeof(float)*outputDataSize);
 ```
  
 ### 8) 后处理
 ```
-    根据output获取的MMLData类型及数据进行需要后处理
+//读取output数据后，进行需要的后处理
+    float *output = (float *)malloc(sizeof(float)*outputDataSize); // example output data
+
 ```
 
 ### 9) 释放Machine
 ```
-    ARC下不需要特别的释放操作
+// 如果是指针类型service，释放service
+    delete service;
 ```
 
 ## 常见错误说明
 ```
 加载常见错误说明
-    /// service load阶段错误值枚举
-typedef NS_ENUM(NSInteger,MMLMachineServiceLoadErrorCode) {
-    MMLMachineServiceLoadMachineTypeError = 0,      // 错误的machine类型，loadMachineWithConfig阶段，传入了不存在的machineType，或者使用的是差异化的剪裁版本，传入了剪裁掉的backend对应的machineType的时候，会返回该错误。
-    MMLMachineServiceLoadNotSupportSimulator,       // 不支持模拟器，在模拟器上运行的时候，会返回该错误。
-    MMLMachineServiceLoadNotSupportArchitecture,    // 不支持的处理器架构，在Mac OC上运行的时候，会返回该错误。
-    MMLMachineServiceLoadWrongConfig,               // 错误的配置，创建GPUbackend的时候，如果engineConifg为空，或类型错误的时候，会返回该错误。
-    MMLMachineServiceLoadNoModelFile,               // 没有模型文件
-    MMLMachineServiceLoadNoModelPointer,            // 内存指针为空，创建GPUbackend的时候，如果MMLMachineConfig的modelPath为空， 且engineConifg的paramPointer和modelPointer均为空的时候，会返回该错误。modelPath和engineConifg这两处至少有一处需要对模型进行配置。
-};
+    /**
+     * 模型加载错误，引擎创建错误
+     */
+    enum ErrorCode {
+        SUCCESS = 0,
+        
+        ERR_PARAM = -1, // iOS GPUbackend预测的时候，如果inputData的rawData==nulltr || datalength<=0的时候，返回该错误。
+
+        LOAD_ERR_OTHER = -11,// paddle Lite backend的时候，如果MML的header和库不匹配，或者因为模型和Lite不匹配，以及其他一些未知原因加载失败的时候，返回该错误。
+        
+        RUN_ERR_PREDICT = -23, // iOS GPU backend 预测的时候，执行预测失败的时候，返回该错误。
+        
+        RUN_ERR_MACHINE_TYPE = -24, // MML Service load的时候传入错误的machine_type，或者iOS平台上使用了不支持GPU的差异化版本加载GPU service的时候，返回该错误。
+        
+        RUN_ERR_MACHINE_HANDLE = -25, // MML service 执行predict的时候，并没有找到backend（或load的时候创建backend失败）的时候，返回该错误
+
+    };
 ```
