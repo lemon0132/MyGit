@@ -42,9 +42,13 @@ Native C++ iOS产物依赖及版本：
 
 ## 三、使用
    MML Native C++ API执行推理的时候。
+   <br>
    首先，需要确定模型、所使用的backend、模型和backend是否匹配、以及其他config参数，并创建config。
+   <br>
    然后，通过config 对Service进行load，Service直接管理预测backend，用户仅需要持有/释放service，不需要对backend的实例进行直接管理。
+   <br>
    Service直接对用户提供填充input，预测、获取output服务。
+   <br>
    Service提供指针类型创建（new）和std::shared_ptr创建两种方式，其中指针类型创建（new）需要手动delete释放Service内存。
     
 
