@@ -1,9 +1,9 @@
-# MMLCore接入文档 (for Native C++ API)
+# MMLCore接入文档 (for Java API)
 
 
 ## 一、编译
 ### 1. 构建环境
-Native C++ iOS产物依赖及版本：
+MML Java API产物依赖及版本：
 |环境依赖 | 版本 |
 |---|---|  
 | ndk | android-ndk-r16b |
@@ -21,11 +21,12 @@ Native C++ iOS产物依赖及版本：
 
 
 ### 3. 构建步骤
-根据文档[MMLCore/MML/C++](MMLCore/MML/C%2B%2B/README.md), 生成`libmml_framework.so`
+ - 根据文档[MMLCore/MML/C++](MMLCore/MML/C%2B%2B/README.md), 编译生成`libmml_framework.so`
+ - 根据文档[MMLCore/MML/Android](MMLCore/MML/Android/README.md), 编译生成`mmlcore-debug.aar`
 
 ## 二、集成
 ### 1. 导入SDK
-将MMLNative的可执行文件`libmml_framework.so`和头文件放在工程目录下
+将MML Java的可执行文件`libmml_framework.so`和`mmlcore.aar`放在工程目录app/libs/下
 
 
 ### 2. 添加第三方依赖
@@ -50,120 +51,72 @@ Native C++ iOS产物依赖及版本：
 
 ### 1) 引入头文件
 ```
-// import MML Native C++ header
-#import "mml_inference_api.h"
+// import MML Java header
+import com.baidu.mmlcore.MMLBaseMachine;
+import com.baidu.mmlcore.MMLData;
+import com.baidu.mmlcore.MMLMachineConfig;
+import com.baidu.mmlcore.MMLMachineService;
+import com.baidu.mmlcore.MMLPaddleConfig;
+import com.baidu.mmlcore.MMLPaddleLiteConfig;
 ```
+
 ### 2) 创建Config （含模型转换）
 ```
-// 创建 MML Native C++ Config
-
-    // CPU config
-    mml_framework::MMLConfig config;
-    config.machine_type = mml_framework::MMLConfig::MachineType::PaddleLite;
-
-    mml_framework::MMLConfig::PaddleLiteConfig paddle_config;
-    paddle_config.powermode = mml_framework::MMLConfig::PaddleLiteConfig::PaddleLitePowerMode::LITE_POWER_NO_BIND;
-    paddle_config.threads = 1;
-    paddle_config.model_type = mml_framework::MMLConfig::PaddleLiteConfig::LITE_MODEL_FROM_FILE;
-
-    paddle_config.model.model_from_file.data = ""; // 模型文件地址String char *
-    paddle_config.model.model_from_file.size = length; // 模型文件地址String length
-    
-    // GPU config
-    mml_framework::MMLConfig config;
-    config.machine_type = mml_framework::MMLConfig::MachineType::PaddleiOSGPU;
-    
-    mml_framework::MMLConfig::PaddleiOSGPUConfig paddle_gpu_config;
-    config.machine_config.paddle_ios_gpu_config = paddle_gpu_config;
-    
-    config.model_file_name = ""; // 模型文件地址String char *
-    config.param_file_name = length; // 模型文件地址String length
-    config.modelUrl = [gpuDir UTF8String]; // mv6s是多输出模型
+// 创建MML Java Config
+MMLMachineConfig machineConfig = new MMLMachineConfig();
+MMLPaddleConfig paddleConfig = new MMLPaddleConfig();
+paddleConfig.liteConfig = new MMLPaddleLiteConfig();
+machineConfig.modelPath = modelPath();
+machineConfig.machineType = MMLMachineConfig.MachineType.MMLPaddleLite;
+machineConfig.engineConifg = paddleConfig;
 ```
-### 3) 创建Service
+
+### 3) 创建Machine
 ```
-//创建service
-
-    //std::shared_ptr类型service
-    std::shared_ptr<mml_framework::MMLMachineService> service = mml_framework::CreateMMLMachineService(config);
-
-    //指针类型service
-    mml_framework::MMLMachineService *service = new mml_framework::MMLMachineService();
-    int result = service->load(config);
+//创建machine
+MMLBaseMachine machine = MMLMachineService.loadMachineWithConfig(machineConfig);
 ```
 ### 4) 前处理
 ```
 // 进行需要的前处理
-    float *inputDemoData;// example input数据
+float *inputData;// example input数据
 ```
 
 ### 5) 创建Input
 ```
 // create input data
-    //  data shape
-    mml_framework::shape_t shape({1, 1, 192, 192});// example shape
-    // 获取第0个input
-    std::unique_ptr<mml_framework::MMLData> inputData = service->getInputData(0);
-    mml_framework::MMLTensor *aInput = inputData->mmlTensor;
-    //resize input
-    aInput->Resize(shape);
-    // 获取input存储数据的指针
-    auto *data = aInput->mutable_data<float>();// example：float数据
-    //填充input数据
-    memcpy(data, inputDemoData, inputDemoDataSize*sizeof(float));// example float数据
+ArrayList<MMLData> input = new ArrayList<>();
+MMLData data = new MMLData(inputData, modelInputBatchSize, modelInputChannel, modelInputHeight, modelInputWidth, 0); // inputData为demo input data
+input.add(data);
 ```
+
 ### 6) Machine执行predict
 ```
 // 执行预测
-    service->run();
+ArrayList<MMLData> output = machine.predictWithInputData(input);
 ```
 
 ### 7) 读取output
 ```
 // get output
-    // 读取第0个output
-    std::unique_ptr<const mml_framework::MMLData> outputData = service->getOutputData(0);
-    const mml_framework::MMLTensor *output_tensor = outputData->mmlTensor;
-    // 读取output的shape
-    int64_t outputDataSize = demo_shapeProduction(output_tensor->shape());
-    //计算数据长度
-    int64_t dataSizex = outputData->dataLength;
-    float *output = (float *)malloc(sizeof(float)*outputDataSize); // example output data
-    // 读取output数据
-    memcpy(output, output_tensor->data<float>(), sizeof(float)*outputDataSize);
+float[] result = postprocess(output.get(0).output.fetchFloatData(), output.get(1).output.fetchFloatData(), output.get(2).output.fetchFloatData(),
+                output.get(3).output.fetchFloatData(), output.get(4).output.fetchFloatData(), image.getWidth(), image.getHeight());
+        
 ```
  
 ### 8) 后处理
 ```
 //读取output数据后，进行需要的后处理
-    float *output = (float *)malloc(sizeof(float)*outputDataSize); // example output data
-
+float *result = output.get(0).output.fetchFloatData()// example output data
 ```
 
 ### 9) 释放Machine
 ```
-// 如果是指针类型service，释放service
-    delete service;
+// 释放machine相关资源
+machine.releaseMachine();
 ```
 
 ## 常见错误说明
 ```
-加载常见错误说明
-    /**
-     * 模型加载错误，引擎创建错误
-     */
-    enum ErrorCode {
-        SUCCESS = 0,
-        
-        ERR_PARAM = -1, // iOS GPUbackend预测的时候，如果inputData的rawData==nulltr || datalength<=0的时候，返回该错误。
-
-        LOAD_ERR_OTHER = -11,// paddle Lite backend的时候，如果MML的header和库不匹配，或者因为模型和Lite不匹配，以及其他一些未知原因加载失败的时候，返回该错误。
-        
-        RUN_ERR_PREDICT = -23, // iOS GPU backend 预测的时候，执行预测失败的时候，返回该错误。
-        
-        RUN_ERR_MACHINE_TYPE = -24, // MML Service load的时候传入错误的machine_type，或者iOS平台上使用了不支持GPU的差异化版本加载GPU service的时候，返回该错误。
-        
-        RUN_ERR_MACHINE_HANDLE = -25, // MML service 执行predict的时候，并没有找到backend（或load的时候创建backend失败）的时候，返回该错误
-
-    };
+-
 ```
