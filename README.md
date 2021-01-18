@@ -6,7 +6,7 @@
 ### 兼容性
 支持平台：iOS、Android。
 <br>
-支持语言：OC、Java。
+支持语言：Objective-C、Java。
 
 ### 依赖和体积
 #### iOS平台
@@ -33,6 +33,10 @@
 |thirdpartydependency | 0.0.9 | 11.8MB |
 
 ### Demo Project
+快速体验Android - 扫码安装<br>
+![QR_Code](/Doc/Resources/1-3.png)
+
+
 #### iOS平台
 ###### 示例工程说明
 示例工程中展示了人像分割、手势识别、视频超分能力。包括能力的接入demo和能力效果的展示。
@@ -90,7 +94,7 @@ MMLCore是一种业界领先的，跨平台的，面向移动开发者的，AI�
 |---|---|---|
 | MML Native | 0.0.9 | 51.5MB(armv7), 51MB(arm64) |
 
-###### OC API
+###### Objective-C API
 |依赖| 版本|体积 | 
 |---|---|---|
 |MML|0.0.9|3.3MB|
@@ -107,9 +111,9 @@ MMLCore是一种业界领先的，跨平台的，面向移动开发者的，AI�
 | MML Native|-|51.5MB(armv7), 51MB(arm64) |
 
 ### 4. Demo Project
-iOS示例工程包含了Native C++ API和OC API的demo调用示例，Native C++ API和OC API分别包含CPU和GPU两种backend，一共4种加载和预测的方式。针对C++API（在iOS上）和OC API的CPU/GPU backend分别是对齐的，模型的加载和预测能力一致。但是CPU和GPU backend之间是隔离的，预测所使用的模型是不一样的。
+iOS示例工程包含了Native C++ API和Objective-C API的demo调用示例，Native C++ API和Objective-C API分别包含CPU和GPU两种backend，一共4种加载和预测的方式。针对C++API（在iOS上）和Objective-C API的CPU/GPU backend分别是对齐的，模型的加载和预测能力一致。但是CPU和GPU backend之间是隔离的，预测所使用的模型是不一样的。
 
-#### 示例IOS工程部署
+#### 示例iOS工程部署
 1.组装工程 
 ```
 git clone https://github.com/PaddlePaddle/LiteKit.git
@@ -123,9 +127,9 @@ open MMLDemo.xcodeproj
 ![图片](/Doc/Resources/1_2.png)
 |类名 | 说明 | 
 |---|---|
-|ViewController |MML（OC & C++）以GPU、CPU作为backend的load及predict的demo code |
+|ViewController |MML（Objective-C & C++）以GPU、CPU作为backend的load及predict的demo code |
 | ViewController+MMLCore_CPP | MML Native C++ API load demo code|
-| ViewController+MMLCore_OC | MML OC API load demo code|
+| ViewController+MMLCore_OC | MML Objective-C API load demo code|
 
 #### 部署Android示例工程  
 1. 首先编译[MMLCore/MML/C++](MMLCore/MML/C%2B%2B/README.md), 生成`libmml_framework.so`
@@ -135,12 +139,12 @@ open MMLDemo.xcodeproj
 ## 二、接口文档
 [接口文档 for Native C++ API](/Doc/MMLCore接口文档(for%20Native%20C%2B%2B%20API).md)
 <br>
-[接口文档 for OC API ](/Doc/MMLCore接口文档(for%20OC%20API).md)
+[接口文档 for Objective-C API ](/Doc/MMLCore接口文档(for%20Objective-C%20API).md)
 <br>
 [接口文档 for Java API ](/Doc/MMLCore接口文档(for%20Java%20API).md)
 
 ## 三、接入文档
-[接入文档 for OC API ](/Doc/MMLCore接入文档(for%20OC%20API).md)
+[接入文档 for Objective-C API ](/Doc/MMLCore接入文档(for%20Objective-C%20API).md)
 <br>
 [接入文档 for Native C++ API on iOS](/Doc/MMLCore接入文档(for%20Native%20C%2B%2B%20API%20on%20iOS).md)
 <br>
