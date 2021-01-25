@@ -1,14 +1,48 @@
-# MMLKit接入文档
-## 1.介绍
+# LiteKit接入文档
+## 介绍
 ### 背景
-基于Paddle⽣态的AI开放能⼒，⾯向客户端⼯程师的产品应⽤解决⽅案。 提供开箱即用的AI能力，支持产品快速接入。目前已输出人像分割、手势识别、视频超分能力。
+LiteKit是基于端推理框架LiteKitCore和端推理引擎PaddleLite，面向移动端工程师的AI能力解决方案。
+MNNKit旨在为客户端应用提供开箱即用的离线的AI能力，使产品快速的简单的接入AI能力，并将提供的AI能力应用于各种业务场景。
+目前已经支持的人像分割、手势识别、视频超分均来自百度各个产品线，已上线功能中，中台化输出的AI能力。
 
-### 兼容性
-支持平台：iOS、Android。
-<br>
-支持语言：Objective-C、Java。
+## 快速体验
 
-### 依赖和体积
+### 1. Android - 扫码安装<br>
+![QR_Code](/Doc/Resources/1-3.png)
+
+### 2. Demo Project
+```powershell
+git clone https://github.com/PaddlePaddle/LiteKit.git
+```
+
+#### iOS平台
+示例工程中展示了人像分割、手势识别、视频超分能力。包括能力的接入demo和能力效果的展示。
+
+###### 示例工程部署
+```C
+cd MMLKit/MMLKitDemo/iOS/MMLKitDemo
+pod install --repo-update
+open MMLKitDemo.xcworkspace
+```
+运行工程可在真机测试机上查看效果。
+
+
+#### Android平台
+1. 打开Android Studio，点击File->Open...，选择MMLKitDemo/Android目录
+2. 参考[MMLKit README](/MMLKit/MMLKitDemo/Android/README.md)文档，下载并放置依赖aar至对应位置
+3. 点击Run安装运行到真机上（Demo中视频检测依赖摄像头输入）
+
+### 效果展示
+// TODO GIF 效果展示
+
+
+## 依赖关系
+
+// TODO 依赖关系图
+// TODO 依赖说明
+//TODO license
+
+### 1. 依赖和体积 
 #### iOS平台
 |依赖 | 版本| 体积 |
 |---|---|---|
@@ -32,46 +66,33 @@
 |mmlkitdependency | 0.0.9 | 3.4MB |
 |thirdpartydependency | 0.0.9 | 11.8MB |
 
-### Demo Project
-快速体验Android - 扫码安装<br>
-![QR_Code](/Doc/Resources/1-3.png)
-
-
-#### iOS平台
-###### 示例工程说明
-示例工程中展示了人像分割、手势识别、视频超分能力。包括能力的接入demo和能力效果的展示。
-
-###### 示例工程部署
-```
-git clone https://github.com/PaddlePaddle/LiteKit.git
-cd MMLKit/MMLKitDemo/iOS/MMLKitDemo
-pod install --repo-update
-open MMLKitDemo.xcworkspace
-```
-运行工程可在真机测试机上查看效果。
-
-
-#### Android平台
-1. 打开Android Studio，点击File->Open...，选择MMLKitDemo/Android目录
-2. 参考[MMLKit README](/MMLKit/MMLKitDemo/Android/README.md)文档，下载并放置依赖aar至对应位置
-3. 点击Run安装运行到真机上（Demo中视频检测依赖摄像头输入）
+### 2. 安装SDK
+//TODO 下载接入
 
 
 
-## 2. 接口文档
+## API
+//TODO 流程图
+//TODO 拆分维度
+// TODO 拆分接入文档
+[人像分割](/Doc/MMLKit接口文档(for%20iOS).md) <br>
+[手势识别](/Doc/MMLKit接口文档(for%20iOS).md) <br>
+[视频超分](/Doc/MMLKit接口文档(for%20iOS).md) <br>
+
 [接口文档 for iOS](/Doc/MMLKit接口文档(for%20iOS).md) <br>
 [接口文档 for Android](/Doc/MMLKit接口文档(for%20Android).md)
-
-
-## 3. 接入文档
 [接入文档 for iOS](/Doc/MMLKit接入文档(for%20iOS).md) <br>
 [接入文档 for Android](/Doc/MMLKit接入文档(for%20Android).md)
 
 
+## 隐私说明
+//TODO
 
+## 性能指标
+// TODO 性能指标
 
-
-
+## 联系
+// TODO 联系
 
 
 
