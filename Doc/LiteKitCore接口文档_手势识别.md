@@ -44,7 +44,7 @@ LiteKitHandGestureDetector.h
 - height：待预测图像数据的高
 - complete：预测结束回调，result为预测的结果，error为预测过程中出现的错误。</br>
 如果error!=nil，表示预测出现错误，result为空。如果error==nil，表示预测成功，result为预测结果。</br>
-LiteKitHandGestureDetectResult结果说明见[4.预测结果数据模型]。
+LiteKitHandGestureDetectResult结果说明见[**4.预测结果数据模型**](#LiteKitHandGestureDetectResult)。
 
 ```objective-c
 /**
@@ -98,7 +98,8 @@ iOS的手势识别接口ARC下不需要额外的释放操作
 
 
 ### 4. 预测结果数据模型
-LiteKitHandGestureDetectResult：手势识别结果数据结构的定义
+#### LiteKitHandGestureDetectResult
+手势识别结果数据结构的定义
 ```objective-c
 /**
  * define hand gesture detect result data
