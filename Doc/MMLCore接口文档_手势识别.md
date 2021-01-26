@@ -16,8 +16,8 @@
 
 | 手势| 说明 | 图例 |
 | --- | --- | --- |
-| 手  | MMLHandGestureDetectionLabelHand = 0 |  |
-| 五指 | MMLHandGestureDetectionLabelFive = 1 |  |
+| 手  | MMLHandGestureDetectionLabelHand = 0 | ![模型文件](/Doc/Resources/21_1.png) |
+| 五指 | MMLHandGestureDetectionLabelFive = 1 | ![模型文件](/Doc/Resources/21_1.png) |
 | V手势 | MMLHandGestureDetectionLabelVictory = 2 |  |
 | 比心 | MMLHandGestureDetectionLabelFist = 3 |  |
 | 一指 | MMLHandGestureDetectionLabelOne = 4 |  |
