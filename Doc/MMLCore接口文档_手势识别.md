@@ -1,67 +1,70 @@
 # 手势识别接口文档
-手势识别能力由LiteKit HandGestureDetection SDK提供的，实时的手势检测能力。可以准确的检测手势所在的位置、手势类型、置信度。
+手势识别能力由LiteKit HandGestureDetection SDK提供的，实时的手势检测能力。可以准确的检测手势所在位置的矩形坐标、手势类型、置信度。
 
 ## 检测内容
 - 手势类型
-- 手势位置
+- 手势位置的矩形坐标
 - 置信度
+
+| 手势|  图例 |
+| --- | --- |
+| 手  |  ![图片](/Doc/Resources/4_1.png) |
+| 五指 |  ![图片](/Doc/Resources/4_2.png) |
+| V手势 |  ![图片](/Doc/Resources/4_3.png) |
+| 拳头 | ![图片](/Doc/Resources/4_4.png)  |
+| 一指 |  ![图片](/Doc/Resources/4_5.png) |
+| OK手势|  ![图片](/Doc/Resources/4_6.png) |
 
 
 
 //TODO 
-## iOS
+## iOS API
 
 ### 数据模型
-1. MMLHandGestureDetectionLabel：可识别手势类型的枚举的定义，目前支持6种。
-
-| 手势| 说明 | 图例 |
-| --- | --- | --- |
-| 手  | MMLHandGestureDetectionLabelHand = 0 | ![图片](/Doc/Resources/4_1.png) |
-| 五指 | MMLHandGestureDetectionLabelFive = 1 | ![图片](/Doc/Resources/4_2.png) |
-| V手势 | MMLHandGestureDetectionLabelVictory = 2 | ![图片](/Doc/Resources/4_3.png) |
-| 拳头 | MMLHandGestureDetectionLabelFist = 3 |![图片](/Doc/Resources/4_4.png)  |
-| 一指 | MMLHandGestureDetectionLabelOne = 4 | ![图片](/Doc/Resources/4_5.png) |
-| OK手势| MMLHandGestureDetectionLabelOK = 5 | ![图片](/Doc/Resources/4_6.png) |
-
-2. MMLHandGestureDetectResult：手势识别结果数据结构的定义
+MMLHandGestureDetectResult：手势识别结果数据结构的定义
 ```objective-c
 /**
  * define hand gesture detect result data
  */
 @interface MMLHandGestureDetectResult : NSObject
 ```
-
-手所在位置，基于图像左上角顶点的rect。
+MMLHandGestureDetectResult包含一下属性：
+手所在位置的矩形坐标。
 ```objective-c
 // rect of hand‘s bounding box
 @property (nonatomic, assign, readonly) CGRect handBoxRect;
 ```
 
-手指尖所在位置，基于图像左上角顶点的point。
+手指尖所在点的坐标。
 ```objective-c
 // position of finger
 @property (nonatomic, assign, readonly) CGPoint fingerPoint;
 ```
 
-手势类型的枚举，详见MMLHandGestureDetectionLabel的说明。
+手势类型的枚举，标志可识别手势类型的枚举的定义，目前支持6种。
+| 手势| 说明 | 
+| --- | --- | 
+| MMLHandGestureDetectionLabelHand = 0 | 手 |
+| MMLHandGestureDetectionLabelFive = 1 | 五指 |
+| MMLHandGestureDetectionLabelVictory = 2 | V手势 |
+| MMLHandGestureDetectionLabelFist = 3 | 拳头 |
+| MMLHandGestureDetectionLabelOne = 4 | 一指 |
+| MMLHandGestureDetectionLabelOK = 5 | OK手势 |
 ```objective-c
 // label of detection result
 @property (nonatomic, assign, readonly) MMLHandGestureDetectionLabel label;
 ```
 
-置信度会返回0～1之间的值
+置信度，值位于0～1之间。
 ```objective-c
 // confidence of detection result
 @property (nonatomic, assign, readonly) float confidence;
 
-@end
 ```
+### 1. 创建实例
 手势识别detector的API，通过createGestureDetector创建detector之后，可以通过UIImage、CMSampleBufferRef、uint8_t * 三种数据作为input执行预测。
 ```objective-c
-/**
- * hand gesture detector
- */
-@interface MMLHandGestureDetector : NSObject
+MMLHandGestureDetector.h
 
 /**
  * @brief initialize and return a instance of gesture detector, the model should be put in main bundle
@@ -79,7 +82,12 @@
  * @return a instance of gesture detector
  */
 + (instancetype)createGestureDetectorWithModelPath:(NSString *)path error:(NSError **)error;
+```
 
+
+### 2. 执行预测
+- 通过图片进行预测
+```objective-c
 /**
  * @brief detect hand gesture with image
  *
@@ -88,7 +96,10 @@
  */
 - (void)detectWithUIImage:(UIImage *)image
                  complete:(void (^)(MMLHandGestureDetectResult *result, NSError *error))complete;
+```
 
+- 通过CMSampleBufferRef进行预测
+```objective-c
 /**
  * @brief detect hand gesture with sampleBuffer
  *
@@ -97,7 +108,11 @@
  */
 - (void)detectWithSampleBuffer:(CMSampleBufferRef)sampleBuffer
                       complete:(void (^)(MMLHandGestureDetectResult *result, NSError *error))complete;
+```
 
+
+- 通过数据进行预测
+```objective-c
 /**
  * @brief detect hand gesture with pixelRawData
  *
@@ -113,6 +128,10 @@
 
 @end
 ```
+
+
+### 3. 释放
+iOS的手势识别接口ARC下不需要额外的释放操作
 
 
 ## Android
