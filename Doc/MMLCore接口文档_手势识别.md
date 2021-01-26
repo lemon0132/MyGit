@@ -22,7 +22,7 @@
 - 创建成功的手势识别Detector
 
 ```objective-c
-MMLHandGestureDetector.h
+LiteKitHandGestureDetector.h
 
 /**
  * @brief initialize and return a instance of hand gesture detector, the model should be put in main bundle
@@ -44,7 +44,7 @@ MMLHandGestureDetector.h
 - height：待预测图像数据的高
 - complete：预测结束回调，result为预测的结果，error为预测过程中出现的错误。</br>
 如果error!=nil，表示预测出现错误，result为空。如果error==nil，表示预测成功，result为预测结果。</br>
-MMLHandGestureDetectResult结果说明见[4.预测结果数据模型]。
+LiteKitHandGestureDetectResult结果说明见[4.预测结果数据模型]。
 
 ```objective-c
 /**
@@ -58,7 +58,7 @@ MMLHandGestureDetectResult结果说明见[4.预测结果数据模型]。
 - (void)detectWithPixelRawData:(uint8_t *)pixelRawData
                          width:(int)width
                         height:(int)height
-                      complete:(void (^)(MMLHandGestureDetectResult *result, NSError *error))complete;
+                      complete:(void (^)(LiteKitHandGestureDetectResult *result, NSError *error))complete;
 
 @end
 ```
@@ -74,7 +74,7 @@ MMLHandGestureDetectResult结果说明见[4.预测结果数据模型]。
  * @param complete completion block with result and error imformation
  */
 - (void)detectWithUIImage:(UIImage *)image
-                 complete:(void (^)(MMLHandGestureDetectResult *result, NSError *error))complete;
+                 complete:(void (^)(LiteKitHandGestureDetectResult *result, NSError *error))complete;
 ```
 
 3）通过CMSampleBufferRef进行预测
@@ -87,7 +87,7 @@ MMLHandGestureDetectResult结果说明见[4.预测结果数据模型]。
  * @param complete completion block with result and error imformation
  */
 - (void)detectWithSampleBuffer:(CMSampleBufferRef)sampleBuffer
-                      complete:(void (^)(MMLHandGestureDetectResult *result, NSError *error))complete;
+                      complete:(void (^)(LiteKitHandGestureDetectResult *result, NSError *error))complete;
 ```
 
 
@@ -98,14 +98,14 @@ iOS的手势识别接口ARC下不需要额外的释放操作
 
 
 ### 4. 预测结果数据模型
-MMLHandGestureDetectResult：手势识别结果数据结构的定义
+LiteKitHandGestureDetectResult：手势识别结果数据结构的定义
 ```objective-c
 /**
  * define hand gesture detect result data
  */
-@interface MMLHandGestureDetectResult : NSObject
+@interface LiteKitHandGestureDetectResult : NSObject
 ```
-MMLHandGestureDetectResult包含一下属性：
+LiteKitHandGestureDetectResult包含一下属性：
 手所在位置的矩形坐标。
 ```objective-c
 // rect of hand‘s bounding box
@@ -121,15 +121,15 @@ MMLHandGestureDetectResult包含一下属性：
 手势类型的枚举，标志可识别手势类型的枚举的定义，目前支持6种。
 | 手势| 说明 | 
 | --- | --- | 
-| MMLHandGestureDetectionLabelHand = 0 | 手 |
-| MMLHandGestureDetectionLabelFive = 1 | 五指手势 |
-| MMLHandGestureDetectionLabelVictory = 2 | 胜利V手势 |
-| MMLHandGestureDetectionLabelFist = 3 | 握拳手势 |
-| MMLHandGestureDetectionLabelOne = 4 | 指/1手势 |
-| MMLHandGestureDetectionLabelOK = 5 | OK手势 |
+| LiteKitHandGestureDetectionLabelHand = 0 | 手 |
+| LiteKitHandGestureDetectionLabelFive = 1 | 五指手势 |
+| LiteKitHandGestureDetectionLabelVictory = 2 | 胜利V手势 |
+| LiteKitHandGestureDetectionLabelFist = 3 | 握拳手势 |
+| LiteKitHandGestureDetectionLabelOne = 4 | 指/1手势 |
+| LiteKitHandGestureDetectionLabelOK = 5 | OK手势 |
 ```objective-c
 // label of detection result
-@property (nonatomic, assign, readonly) MMLHandGestureDetectionLabel label;
+@property (nonatomic, assign, readonly) LiteKitHandGestureDetectionLabel label;
 ```
 
 置信度，值位于0～1之间。
@@ -161,7 +161,7 @@ public static boolean init(Context context)
 - imgHeight 图像的高度
 
 #### 返回值
-HandGestureDetectResult 说明见[**4. 预测结果数据模型**](# 4. 预测结果数据模型)
+HandGestureDetectResult 说明见[**4. 预测结果数据模型**](#HandGestureDetectResult)
 ```java
 
 /**
@@ -198,6 +198,7 @@ example:HandGestureDetector.release();
 public static boolean release()
 ```
 ### 4. 预测结果数据模型
+#### HandGestureDetectResult
 预测返回结果结构HandGestureDetectResult
 ```java
 public class HandGestureDetectResult {
