@@ -16,7 +16,7 @@ public abstract ArrayList<MMLData> predictWithInputData(ArrayList<MMLData> aInpu
 ## MMLMachineConfig
 
 MMLMachineService通过加载config创建basemachine
-```
+```objectivec
  /**
   * 模型文件路径
   */

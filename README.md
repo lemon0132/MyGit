@@ -7,67 +7,60 @@ MNNKit旨在为客户端应用提供开箱即用的离线的AI能力，使产品
 
 ## 快速体验
 
+### 效果展示
+// TODO GIF 效果展示
+
 ### 1. Android - 扫码安装<br>
 ![QR_Code](/Doc/Resources/1-3.png)
 
 ### 2. Demo Project
-```powershell
+
+```
 git clone https://github.com/PaddlePaddle/LiteKit.git
 ```
+
 
 #### iOS平台
 示例工程中展示了人像分割、手势识别、视频超分能力。包括能力的接入demo和能力效果的展示。
 
 ###### 示例工程部署
-```C
-cd MMLKit/MMLKitDemo/iOS/MMLKitDemo
+```
+cd LiteKit/LiteKitDemo/iOS/LiteKitDemo
 pod install --repo-update
-open MMLKitDemo.xcworkspace
+open LiteKitDemo.xcworkspace
 ```
 运行工程可在真机测试机上查看效果。
 
 
 #### Android平台
-1. 打开Android Studio，点击File->Open...，选择MMLKitDemo/Android目录
-2. 参考[MMLKit README](/MMLKit/MMLKitDemo/Android/README.md)文档，下载并放置依赖aar至对应位置
+1. 打开Android Studio，点击File->Open...，选择LiteKitDemo/Android目录
+2. 参考[LiteKit README](/LiteKit/LiteKitDemo/Android/README.md)文档，下载并放置依赖aar至对应位置
 3. 点击Run安装运行到真机上（Demo中视频检测依赖摄像头输入）
-
-### 效果展示
-// TODO GIF 效果展示
 
 
 ## 依赖关系
 
-// TODO 依赖关系图
-// TODO 依赖说明
-//TODO license
+LiteKit依赖关系如下：
+![依赖关系图](/Doc/Resources/1-4.png)
+其中：
+1. PaddleLite层，[PaddleLite](https://github.com/PaddlePaddle/Paddle-Lite)是一个高性能、轻量级、灵活性强且易于扩展的深度学习推理框架，LiteKitSDK的AI能力底层基于PaddleLite引擎实现。
+2. LiteKitCore层，LiteKitCore是一种跨平台的，面向移动开发者的，AI工程化的综合解决方案。LiteKitCore作为端模型预测的统一接入层，目的是端模型的快速工程化集成，降低客户端RD在端运行AI模型的门槛和提升集成效率，同时也能更好实现基于端模型业务能力的快速横向输出。目前为提供了Objective C，Java，C++三种语言的API。
+3. LiteKit层，视频超分，人像分割，手势识别，均称为LiteKit的业务SDK。每种业务SDK中，封装了对应AI能力的模型、预测的前后处理等逻辑。后续会产生更多覆盖其他AI场景的业务SDK。
 
-### 1. 依赖和体积 
-#### iOS平台
-|依赖 | 版本| 体积 |
+### License
+LiteKit和LiteKitCore均遵守![MIT LICENSE](/LICENSE)。
+
+### 1. 依赖
+
+|依赖 | iOS版本| Android版本 |
 |---|---|---|
-|MMLHandGestureDetection| 0.0.9| 927KB |
-|MMLPortraitSegmentation| 0.0.9| 10.9MB |
-|MMLAIVideoSuperResolution| 0.0.9| 1.7MB |
-|ProtocolBuffers| 0.0.9| 17.7MB |
-|ZipArchive| 0.0.9| 3.9MB |
-|opencv2| 3.4.1| 128.6MB |
-|libpng| opencv3.4.1对应libpng版本| 3.1MB |
-|libwebp| opencv3.4.1对应libwebp版本| 7.5MB | 
-|libjpeg| opencv3.4.1对应libjpeg版本| 3.9MB | 
-
-
-#### Android平台
-|依赖 | 版本| 体积 |
-|---|---|---|
-|gesturerecognize | 0.0.9 | 50KB |
-|superresolution | 0.0.9 | 45KB |
-|portraitsegmentation | 0.0.9 | 437KB |
-|mmlkitdependency | 0.0.9 | 3.4MB |
-|thirdpartydependency | 0.0.9 | 11.8MB |
+|LiteKitHandGestureDetection| 0.0.9| 0.0.9| 
+|LiteKitPortraitSegmentation| 0.0.9| 0.0.9|
+|LiteKitAIVideoSuperResolution| 0.0.9| 0.0.9|
 
 ### 2. 安装SDK
-//TODO 下载接入
+[接入文档 for iOS](/Doc/LiteKit接入文档(for%20iOS).md) <br>
+[接入文档 for Android](/Doc/LiteKit接入文档(for%20Android).md)
 
 
 
@@ -75,18 +68,16 @@ open MMLKitDemo.xcworkspace
 //TODO 流程图
 //TODO 拆分维度
 // TODO 拆分接入文档
-[人像分割](/Doc/MMLKit接口文档(for%20iOS).md) <br>
-[手势识别](/Doc/MMLKit接口文档(for%20iOS).md) <br>
-[视频超分](/Doc/MMLKit接口文档(for%20iOS).md) <br>
+[人像分割](/Doc/LiteKit接口文档_人像分割.md) <br>
+[手势识别](/Doc/LiteKit接口文档_手势识别.md) <br>
+[视频超分](/Doc/LiteKit接口文档(for%20iOS).md) <br>
 
-[接口文档 for iOS](/Doc/MMLKit接口文档(for%20iOS).md) <br>
-[接口文档 for Android](/Doc/MMLKit接口文档(for%20Android).md)
-[接入文档 for iOS](/Doc/MMLKit接入文档(for%20iOS).md) <br>
-[接入文档 for Android](/Doc/MMLKit接入文档(for%20Android).md)
+[接口文档 for iOS](/Doc/LiteKit接口文档(for%20iOS).md) <br>
+[接口文档 for Android](/Doc/LiteKit接口文档(for%20Android).md)
 
 
 ## 隐私说明
-//TODO
+LiteKit目前版本不会收集任何用户数据和用户信息，也不需要申请用户的隐私权限。
 
 ## 性能指标
 // TODO 性能指标
@@ -96,10 +87,10 @@ open MMLKitDemo.xcworkspace
 
 
 
-# MMLCore接入文档
+# LiteKitCore接入文档
 ## 一、介绍
 ### 1. 背景
-MMLCore是一种业界领先的，跨平台的，面向移动开发者的，AI工程化的综合解决方案。MMLCore作为端模型预测的统一接入层，目的是端模型的快速工程化集成，降低客户端RD在端运行AI模型的门槛和提升集成效率，同时也能更好实现基于端模型业务能力的快速横向输出。基于MMLCore的端AI预测能力，可以快速的基于不同宿主进行集成与部署。MMLCore主要功能如下：模型加载，预测能力，前后处理能力，业务数据到Backend Input/Output的转换，Backend无感知升级，性能统计，容错处理，任务队列管理，运行时资源调度，生命周期管理等。
+LiteKitCore是一种跨平台的，面向移动开发者的，AI工程化的综合解决方案。LiteKitCore作为端模型预测的统一接入层，目的是端模型的快速工程化集成，降低客户端RD在端运行AI模型的门槛和提升集成效率，同时也能更好实现基于端模型业务能力的快速横向输出。基于LiteKitCore的端AI预测能力，可以快速的基于不同宿主进行集成与部署。LiteKitCore主要功能如下：模型加载，预测能力，前后处理能力，业务数据到Backend Input/Output的转换，Backend无感知升级，性能统计，容错处理，任务队列管理，运行时资源调度，生命周期管理等。
 
 
 ### 2. 兼容性
@@ -113,12 +104,12 @@ MMLCore是一种业界领先的，跨平台的，面向移动开发者的，AI�
 
 | 依赖 | 版本 | 体积 | 
 |---|---|---|
-| MML Native | 0.0.9 | 51.5MB(armv7), 51MB(arm64) |
+| LiteKit Native | 0.0.9 | 51.5MB(armv7), 51MB(arm64) |
 
 ###### Objective-C API
 |依赖| 版本|体积 | 
 |---|---|---|
-|MML|0.0.9|3.3MB|
+|LiteKit|0.0.9|3.3MB|
 |opencv|3.4.1|128.6MB|
 |paddleLite|1.0.0|102.2MB|
 |paddle_mobile|1.0.0|14.1MB|
@@ -129,7 +120,7 @@ MMLCore是一种业界领先的，跨平台的，面向移动开发者的，AI�
 #### Java API 依赖
 |依赖|版本| 体积 | 
 |---|---|---|
-| MML Native|-|51.5MB(armv7), 51MB(arm64) |
+| LiteKit Native|-|51.5MB(armv7), 51MB(arm64) |
 
 ### 4. Demo Project
 iOS示例工程包含了Native C++ API和Objective-C API的demo调用示例，Native C++ API和Objective-C API分别包含CPU和GPU两种backend，一共4种加载和预测的方式。针对C++API（在iOS上）和Objective-C API的CPU/GPU backend分别是对齐的，模型的加载和预测能力一致。但是CPU和GPU backend之间是隔离的，预测所使用的模型是不一样的。
@@ -138,8 +129,8 @@ iOS示例工程包含了Native C++ API和Objective-C API的demo调用示例，Na
 1.组装工程 
 ```
 git clone https://github.com/PaddlePaddle/LiteKit.git
-cd PaddleMMLCore/MMLDemo/iOS
-open MMLDemo.xcodeproj
+cd PaddleLiteKitCore/LiteKitDemo/iOS
+open LiteKitDemo.xcodeproj
 ```
 2.配置调试真机及Apple ID
 ![图片](/Doc/Resources/1_1.png)
@@ -148,30 +139,30 @@ open MMLDemo.xcodeproj
 ![图片](/Doc/Resources/1_2.png)
 |类名 | 说明 | 
 |---|---|
-|ViewController |MML（Objective-C & C++）以GPU、CPU作为backend的load及predict的demo code |
-| ViewController+MMLCore_CPP | MML Native C++ API load demo code|
-| ViewController+MMLCore_OC | MML Objective-C API load demo code|
+|ViewController |LiteKit（Objective-C & C++）以GPU、CPU作为backend的load及predict的demo code |
+| ViewController+LiteKitCore_CPP | LiteKit Native C++ API load demo code|
+| ViewController+LiteKitCore_OC | LiteKit Objective-C API load demo code|
 
 #### 部署Android示例工程  
-1. 首先编译[MMLCore/MML/C++](MMLCore/MML/C%2B%2B/README.md), 生成`libmml_framework.so`
-2. 然后编译[MMLCore/MML/Android](MMLCore/MML/Android/README.md), 生成`mmlcore-debug.aar`
-3. 最后编译[MMLCore/MMLDemo/Android](MMLCore/MMLDemo/Android/README.md), 通过Android studio 打开项目即可运行demo
+1. 首先编译[LiteKitCore/LiteKit/C++](LiteKitCore/LiteKit/C%2B%2B/README.md), 生成`libLiteKit_framework.so`
+2. 然后编译[LiteKitCore/LiteKit/Android](LiteKitCore/LiteKit/Android/README.md), 生成`LiteKitCore-debug.aar`
+3. 最后编译[LiteKitCore/LiteKitDemo/Android](LiteKitCore/LiteKitDemo/Android/README.md), 通过Android studio 打开项目即可运行demo
 
 ## 二、接口文档
-[接口文档 for Native C++ API](/Doc/MMLCore接口文档(for%20Native%20C%2B%2B%20API).md)
+[接口文档 for Native C++ API](/Doc/LiteKitCore接口文档(for%20Native%20C%2B%2B%20API).md)
 <br>
-[接口文档 for Objective-C API ](/Doc/MMLCore接口文档(for%20Objective-C%20API).md)
+[接口文档 for Objective-C API ](/Doc/LiteKitCore接口文档(for%20Objective-C%20API).md)
 <br>
-[接口文档 for Java API ](/Doc/MMLCore接口文档(for%20Java%20API).md)
+[接口文档 for Java API ](/Doc/LiteKitCore接口文档(for%20Java%20API).md)
 
 ## 三、接入文档
-[接入文档 for Objective-C API ](/Doc/MMLCore接入文档(for%20Objective-C%20API).md)
+[接入文档 for Objective-C API ](/Doc/LiteKitCore接入文档(for%20Objective-C%20API).md)
 <br>
-[接入文档 for Native C++ API on iOS](/Doc/MMLCore接入文档(for%20Native%20C%2B%2B%20API%20on%20iOS).md)
+[接入文档 for Native C++ API on iOS](/Doc/LiteKitCore接入文档(for%20Native%20C%2B%2B%20API%20on%20iOS).md)
 <br>
-[接入文档 for Native C++ API on Android](/Doc/MMLCore接入文档(for%20Native%20C%2B%2B%20API%20on%20Android).md)
+[接入文档 for Native C++ API on Android](/Doc/LiteKitCore接入文档(for%20Native%20C%2B%2B%20API%20on%20Android).md)
 <br>
-[接入文档 for Java API ](/Doc/MMLCore接入文档(for%20Java%20API).md)
+[接入文档 for Java API ](/Doc/LiteKitCore接入文档(for%20Java%20API).md)
 
 
 
