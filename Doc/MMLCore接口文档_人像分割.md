@@ -1,7 +1,11 @@
 # 人像分割接口文档
 
+
+
 ## iOS
+### 数据模型
 人像分割能力的output数据结构定义
+
 ```objective-c
 /**
  * @desc PortraitSegmentor data for output
