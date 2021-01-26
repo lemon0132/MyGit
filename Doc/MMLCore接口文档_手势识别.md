@@ -12,7 +12,8 @@
 ## iOS
 
 ### 数据模型
-1. MMLHandGestureDetectionLabel：可识别手势类型的枚举的定义，目前支持6种
+1. MMLHandGestureDetectionLabel：可识别手势类型的枚举的定义，目前支持6种。
+
 | 手势| 说明 | 图例 |
 | --- | --- | --- |
 | 手  | MMLHandGestureDetectionLabelHand = 0 |  |
