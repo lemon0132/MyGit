@@ -16,12 +16,12 @@
 
 | 手势| 说明 | 图例 |
 | --- | --- | --- |
-| 手  | MMLHandGestureDetectionLabelHand = 0 | ![模型文件](/Doc/Resources/21_1.png) |
-| 五指 | MMLHandGestureDetectionLabelFive = 1 | ![模型文件](/Doc/Resources/21_1.png) |
-| V手势 | MMLHandGestureDetectionLabelVictory = 2 |  |
-| 比心 | MMLHandGestureDetectionLabelFist = 3 |  |
-| 一指 | MMLHandGestureDetectionLabelOne = 4 |  |
-| OK手势| MMLHandGestureDetectionLabelOK = 5 |  |
+| 手  | MMLHandGestureDetectionLabelHand = 0 | ![图片](/Doc/Resources/4_1.png) |
+| 五指 | MMLHandGestureDetectionLabelFive = 1 | ![图片](/Doc/Resources/4_2.png) |
+| V手势 | MMLHandGestureDetectionLabelVictory = 2 | ![图片](/Doc/Resources/4_2.png) |
+| 拳头 | MMLHandGestureDetectionLabelFist = 3 |![图片](/Doc/Resources/4_2.png)  |
+| 一指 | MMLHandGestureDetectionLabelOne = 4 | ![图片](/Doc/Resources/4_2.png) |
+| OK手势| MMLHandGestureDetectionLabelOK = 5 | ![图片](/Doc/Resources/4_2.png) |
 
 2. MMLHandGestureDetectResult：手势识别结果数据结构的定义
 ```objective-c
