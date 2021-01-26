@@ -6,9 +6,9 @@
 - 手势位置的矩形坐标
 - 置信度
 
-| <B>手势</B>|  手  | 五指|V手势 | 拳头 | 一指 |  OK手势| 
-| --- | --- |
-| <B>图例</B>|  ![图片](/Doc/Resources/4_1.png) |  ![图片](/Doc/Resources/4_2.png) | ![图片](/Doc/Resources/4_3.png) |![图片](/Doc/Resources/4_4.png)  |![图片](/Doc/Resources/4_5.png) | ![图片](/Doc/Resources/4_6.png) | 
+| <B>手势</B> |  手  | 五指 | V手势 | 拳头 | 一指 |  OK手势| 
+| --- | --- |--- |--- |--- |--- |--- |
+| <B>图例</B> |  ![图片](/Doc/Resources/4_1.png) |  ![图片](/Doc/Resources/4_2.png) | ![图片](/Doc/Resources/4_3.png) |![图片](/Doc/Resources/4_4.png)  |![图片](/Doc/Resources/4_5.png) | ![图片](/Doc/Resources/4_6.png) | 
 
 
 
