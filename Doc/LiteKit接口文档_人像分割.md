@@ -89,14 +89,22 @@ iOS的人像分割接口ARC下不需要额外的释放操作
 /**
  * @desc PortraitSegmentor data for output
  */
-typedef struct LiteKitPortraitSegmentorData LiteKitPSData;
+ typedef struct LiteKitPortraitSegmentorData {
+     struct LiteKitPortraitSegmentorDataShape {
+         int n; // batch, =1
+         int c; // channel, =1
+         int h; // output height, =192
+         int w; // output width, =192
+     } dataShape; // output data shape
+     uint8_t *data; // output data
+ } LiteKitPSData;
 ```
 
-LiteKitPSData中的output数据的shape，其中：
+LiteKitPSData中的dataShape：output数据的shape，其中：
 n：批量数，目前批量处理图片数只能为1。
 c：返回数据的channel数，此处目前返回的值为1，标识只返回了1个通道的数据。
-h：返回数据的height，目前返回数据的height=192。
-w：返回数据的width，目前返回数据的width=192。
+h：返回数据的height，目前返回数据的height只为192。
+w：返回数据的width，目前返回数据的width只为192。
 ```objective-c
     struct LiteKitPortraitSegmentorDataShape {
         int n; // batch, =1
@@ -107,8 +115,8 @@ w：返回数据的width，目前返回数据的width=192。
     
 ```
 
-data：output数据，返回的数据大小w*h=192*192，只有1个channel，每一位数据为0或255，0表示该点不存在人像，255表示该点存在人像。
-在实际的开发过程中，可以作为mask使用，具体如何将返回的192*192的mask应用于不同大小的图像或其他业务场景，这个问题需要开发者考虑。
+LiteKitPSData中的data：output的数据部分，返回的数据大小w\*h=192\*192，只有1个channel，每一位数据为0或255，0表示该点不存在人像，255表示该点存在人像。
+在实际的开发过程中，可以作为mask使用，具体如何将返回的数据应用于不同大小的图像或其他业务场景，这个问题需要开发者考虑。
 ```objective-c 
     uint8_t *data; // output data
 ```
@@ -144,7 +152,7 @@ public PortraitSegmentation(PortraitSegmentationConfig config)
 - width：input图像的width
 - height：input图像的height
 #### 返回值
-- 返回值为w*h=192*192的int[]，具体说明见[4. 返回值说明](#return)
+- 返回值为w\*h=192\*192的int[]，具体说明见[4. 返回值说明](#return)
 ```java
 /**
  * @desc 通过byte数据进行预测
@@ -178,5 +186,5 @@ public void release()
 
 ### 4. 返回值说明
 #### return
-人像分割返回为w*h=192*192的int[]，其中每一位的值为value = ( a << 24 | 255 << 16 | 255 << 8 | 255 )，
+人像分割返回为w\*h=192\*192的int[]，其中每一位的值为value = ( a << 24 | 255 << 16 | 255 << 8 | 255 )，
 可以通过Color.alpha(value)获取到一个0～255的alpha值，0表示该点不存在人像，255表示该点存在人像
