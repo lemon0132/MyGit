@@ -91,8 +91,6 @@ LiteKitHandGestureDetectResult结果说明见[**4.预测结果数据模型**](#L
 ```
 
 
-
-
 ### 3. 释放
 iOS的手势识别接口ARC下不需要额外的释放操作
 
@@ -175,7 +173,7 @@ HandGestureDetectResult 说明见[**4. 预测结果数据模型**](#HandGestureD
 public static HandGestureDetectResult detect(byte[] data, int imgWidth, int imgHeight) 
 ```
 
-通过Bitmap进行预测的接口，其中接口通过Bitmap接受图像数据，返回值意义同原始数据预测接口
+通过Bitmap进行预测的接口，其中接口通过Bitmap接受图像数据，返回值意义同1）通过原始数据预测接口
 ```java
 example：HandGestureDetector.detect(scaleImage);
 

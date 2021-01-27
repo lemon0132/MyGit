@@ -1,46 +1,40 @@
 # 人像分割接口文档
+人像分割能力由LiteKit 
 
 
+## iOS API
 
-## iOS
-### 数据模型
-人像分割能力的output数据结构定义
-
-```objective-c
-/**
- * @desc PortraitSegmentor data for output
- */
-typedef struct MMLPortraitSegmentorData {
-    struct MMLPortraitSegmentorDataShape {
-        int n; // batch, =1
-        int c; // channel, =1
-        int h; // output height, =192
-        int w; // output width, =192
-    } dataShape; // output data shape
-    uint8_t *data; // output data
-} MMLPSData;
-
-```
+### 1. 创建实例
 人像分割Segmentor的创建和执行，通过create方法创建Segmentor之后，可以以uint8_t、UIImage和CVPixelBufferRef三种作为input数据执行预测。
-```objective-c
-/**
- * @desc MML Portrait Segmentor Implement
- */
-@interface MMLPortraitSegmentor : NSObject
 
-#pragma mark - MMLPortraitSegmentor/Create
+#### 参数
+- error：创建过程中如果发生错误，返回错误信息。如果成功创建，不会赋值。
+#### 返回值
+- 创建成功的人像分割的Segmentor
+
+```objective-c
+LiteKitPortraitSegmentor.h
 
 /**
  * @desc create Portrait Segmentor
- * @param modelPath Path for Portrait Segmentor model
  * @param error error while create, if succeed will be nil, nullable
  * @return instancetype Portrait Segmentor created
  */
-+ (instancetype) create:(NSString *)modelPath
-                  error:(NSError **)error;
++ (instancetype) createPortraitSegmentorWithError:(NSError **)error;
+```
 
+### 2. 执行预测
+1）通过数据进行预测
 
-#pragma mark - MMLPortraitSegmentor/Infer-Sync
+#### 参数
+- rawData：待预测图像数据，uint8_t 3 channel的RGB图像数据
+- width：待预测图像数据的宽
+- height：待预测图像数据的高
+- error：error为预测过程中出现的错误，如果error!=nil，表示预测出现错误，result为空。如果error==nil，表示预测成功，result为预测结果。</br>
+
+#### 返回值
+人像分割的预测结果，LiteKitPSData说明见[**4.预测结果数据模型**](#LiteKitPSData)。
+```objective-c
 
 /**
  * @desc Portrait Segmentor inference with RawData
@@ -48,54 +42,109 @@ typedef struct MMLPortraitSegmentorData {
  * @param width input Data width
  * @param height input data height
  * @param error  Error while inference, will be nil if succed
- * @return MMLPSData output data, size of 192*192
+ * @return LiteKitPSData output data, size of 192*192
  */
-- (MMLPSData *) inferWithRawData:(uint8_t *)rawData
+- (LiteKitPSData *) inferWithRawData:(uint8_t *)rawData
                            width:(int)width
                           height:(int)height
                            error:(NSError **)error;
+```
 
+2）通过UIImage进行预测
+其他参数同1），其中输入图片数据为UIImage格式。
+```objective-c
 /**
  * @desc Portrait Segmentor inference with UIImage
  * @param image UIImage to inference
  * @param error  Error while inference, will be nil if succed
- * @return MMLPSData output data, size of 192*192
+ * @return LiteKitPSData output data, size of 192*192
  */
-- (MMLPSData *) inferWithImage:(UIImage *)image
+- (LiteKitPSData *) inferWithImage:(UIImage *)image
                          error:(NSError **)error;
+```
 
+3）通过CVPixelBufferRef进行预测
+其他参数同1），其中输入图片数据为UIImage格式。
+```objective-c
 /**
  * @desc Portrait Segmentor inference with CVPixelBufferRef
  * @param pixelBuffer CVPixelBufferRef to inference
  * @param error  Error while inference, will be nil if succed
- * @return MMLPSData output data, size of 192*192
+ * @return LiteKitPSData output data, size of 192*192
  */
-- (MMLPSData *) inferWithPixelBuffer:(CVPixelBufferRef)pixelBuffer
+- (LiteKitPSData *) inferWithPixelBuffer:(CVPixelBufferRef)pixelBuffer
                                error:(NSError **)error;
-
-@end
 ```
 
-## Android
-人像分割的config定义MMLPortraitSegmentationConfig
-```java
+
+### 3. 释放
+iOS的人像分割接口ARC下不需要额外的释放操作
+
+
+### 4. 预测结果数据模型
+#### LiteKitPSData
+人像分割能力的output数据结构定义LiteKitPSData，
+
+```objective-c
 /**
- * @desc 设置config中的模型路径
- * @param path 模型路径
+ * @desc PortraitSegmentor data for output
  */
-public void setModelUrl(String path) 
+typedef struct LiteKitPortraitSegmentorData LiteKitPSData;
 ```
 
-初始化人像分割的MMLPortraitSegmentation
+LiteKitPSData中的output数据的shape，其中：
+n：批量数，目前批量处理图片数只能为1。
+c：返回数据的channel数，此处目前返回的值为1，标识只返回了1个通道的数据。
+h：返回数据的height，目前返回数据的height=192。
+w：返回数据的width，目前返回数据的width=192。
+```objective-c
+    struct LiteKitPortraitSegmentorDataShape {
+        int n; // batch, =1
+        int c; // channel, =1
+        int h; // output height, =192
+        int w; // output width, =192
+    } dataShape; // output data shape
+    
+```
+
+data：output数据，返回的数据大小w*h=192*192，只有1个channel，每一位数据为0或255，0表示该点不存在人像，255表示该点存在人像。
+在实际的开发过程中，可以作为mask使用，具体如何将返回的192*192的mask应用于不同大小的图像或其他业务场景，这个问题需要开发者考虑。
+```objective-c 
+    uint8_t *data; // output data
+```
+
+
+
+
+
+
+
+## Android API
+
+### 1. 创建实例
+初始化人像分割的PortraitSegmentation
+
+#### 参数
+- config：目前作为预留接口，不需要进行额外的设置。
+#### 返回值 
+- 人像分割的PortraitSegmentation
 ```java
 /**
- * @desc 对MMLPortraitSegmentation进行初始化
+ * @desc 对PortraitSegmentation进行初始化
  * @param config 初始化配置config
  */
-public MMLPortraitSegmentation(MMLPortraitSegmentationConfig config)
+public PortraitSegmentation(PortraitSegmentationConfig config)
 ```
 
-人像分割MMLPortraitSegmentation的预测接口
+### 2. 执行预测
+人像分割PortraitSegmentation的预测接口
+1）通过图像数据byte[]进行预测
+#### 参数
+- img_data：待预测图像数据，uint8_t 3 channel的RGB图像数据
+- width：input图像的width
+- height：input图像的height
+#### 返回值
+- 返回值为w*h=192*192的int[]，具体说明见[4. 返回值说明](#return)
 ```java
 /**
  * @desc 通过byte数据进行预测
@@ -105,7 +154,11 @@ public MMLPortraitSegmentation(MMLPortraitSegmentationConfig config)
  * @return int[] 预测结果
  */
 public int[] predictor(byte[] img_data, int width, int height)
+```
 
+2）通过Bitmap进行预测
+通过Bitmap进行预测的接口，其中接口通过Bitmap接受图像数据，返回值意义和1）通过图像数据byte[]预测接口相同。
+```java
 /**
  * @desc 通过bitmap数据进行预测
  * @param img_data 待预测的bitmap数据
@@ -114,11 +167,16 @@ public int[] predictor(byte[] img_data, int width, int height)
 public int[] predictor(Bitmap img_data)
 ```
 
+### 3. 释放
 释放人像分割资源
-
 ```java
 /**
- * @desc 对人像分割MMLPortraitSegmentation进行释放
+ * @desc 对人像分割LiteKitPortraitSegmentation进行释放
  */
 public void release()
 ```
+
+### 4. 返回值说明
+#### return
+人像分割返回为w*h=192*192的int[]，其中每一位的值为value = ( a << 24 | 255 << 16 | 255 << 8 | 255 )，
+可以通过Color.alpha(value)获取到一个0～255的alpha值，0表示该点不存在人像，255表示该点存在人像

@@ -48,7 +48,7 @@ LiteKit依赖关系如下：
 3. LiteKit层，视频超分，人像分割，手势识别，均称为LiteKit的业务SDK。每种业务SDK中，封装了对应AI能力的模型、预测的前后处理等逻辑。后续会产生更多覆盖其他AI场景的业务SDK。
 
 ### License
-LiteKit和LiteKitCore均遵守![MIT LICENSE](/LICENSE)。
+LiteKit和LiteKitCore均遵守[MIT LICENSE](/LICENSE)开源协议。
 
 ### 1. 依赖
 
@@ -66,14 +66,11 @@ LiteKit和LiteKitCore均遵守![MIT LICENSE](/LICENSE)。
 
 ## API
 //TODO 流程图
-//TODO 拆分维度
-// TODO 拆分接入文档
+
+
 [人像分割](/Doc/LiteKit接口文档_人像分割.md) <br>
 [手势识别](/Doc/LiteKit接口文档_手势识别.md) <br>
-[视频超分](/Doc/LiteKit接口文档(for%20iOS).md) <br>
-
-[接口文档 for iOS](/Doc/LiteKit接口文档(for%20iOS).md) <br>
-[接口文档 for Android](/Doc/LiteKit接口文档(for%20Android).md)
+[视频超分](/Doc/LiteKit接口文档_视频超分.md) <br>
 
 
 ## 隐私说明
