@@ -10,12 +10,12 @@ LiteKit旨在为客户端应用提供开箱即用的离线的AI能力，使产�
 ### 效果展示
 | 手势识别 | 人像分割 |
 | --- | --- |
-| ![Gesture](/Doc/Resources/1_5.png) | ![Seg](/Doc/Resources/1_6.png) |
+| <div align=center><img width="800" height="400"  src="/Doc/Resources/1_5.png"/></div> | <div align=center><img width="800" height="400"  src="/Doc/Resources/1_6.png"/></div> |
 
 视频超分
 | 超分前 | 超分后 |
 | --- | --- |
-| ![SR](/Doc/Resources/1_7.png) | ![SR](/Doc/Resources/1_7_2.png) |
+| ![SR](/Doc/Resources/1_7.jpeg) | ![SR](/Doc/Resources/1_7_2.png) |
 ### 1. Android - 扫码安装<br>
 ![QR_Code](/Doc/Resources/1_3.png)
 
