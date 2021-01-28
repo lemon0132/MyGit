@@ -8,10 +8,16 @@ LiteKit旨在为客户端应用提供开箱即用的离线的AI能力，使产�
 ## 快速体验
 
 ### 效果展示
-// TODO GIF 效果展示
+| 手势识别 | 人像分割 |
+| --- | --- |
+| ![Gesture](/Doc/Resources/1_5.png) | ![Seg](/Doc/Resources/1_6.png) |
 
+视频超分
+| 超分前 | 超分后 |
+| --- | --- |
+| ![SR](/Doc/Resources/1_7.png) | ![SR](/Doc/Resources/1_7_2.png) |
 ### 1. Android - 扫码安装<br>
-![QR_Code](/Doc/Resources/1-3.png)
+![QR_Code](/Doc/Resources/1_3.png)
 
 ### 2. Demo Project
 
@@ -41,7 +47,7 @@ open LiteKitDemo.xcworkspace
 ## 依赖关系
 
 LiteKit依赖关系如下：
-![依赖关系图](/Doc/Resources/1-4.png)
+![依赖关系图](/Doc/Resources/1_4.png)
 其中：
 1. PaddleLite层，[PaddleLite](https://github.com/PaddlePaddle/Paddle-Lite)是一个高性能、轻量级、灵活性强且易于扩展的深度学习推理框架，LiteKitSDK的AI能力底层基于PaddleLite引擎实现。
 2. LiteKitCore层，LiteKitCore是一种跨平台的，面向移动开发者的，AI工程化的综合解决方案。LiteKitCore作为端模型预测的统一接入层，目的是端模型的快速工程化集成，降低客户端RD在端运行AI模型的门槛和提升集成效率，同时也能更好实现基于端模型业务能力的快速横向输出。目前为提供了Objective C，Java，C++三种语言的API。
@@ -75,9 +81,6 @@ LiteKit和LiteKitCore均遵守[MIT LICENSE](/LICENSE)开源协议。
 
 ## 隐私说明
 LiteKit目前版本不会收集任何用户数据和用户信息，也不需要申请用户的隐私权限。
-
-## 性能指标
-// TODO 性能指标
 
 ## 联系
 // TODO 联系

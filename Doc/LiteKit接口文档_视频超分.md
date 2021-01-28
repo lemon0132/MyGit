@@ -51,12 +51,12 @@ LiteKitVideoSuperResolutionor.h
 
 2）通过UIImage进行预测
 
-### 参数
+#### 参数
 - inputImage：输入的图像
 - scale：超分过程中缩放的倍数，一般scale>=1。scale=1的时候，输入输出大小相等，进通过超分能力对图像进行重建。scale>1的时候，会对input进行scale后进行重建。
 - error：如果超分过程中产生错误，则会对error进行赋值，此时outputData中的数据无效。如果error没有值，则表示超分成功。
 
-### 返回值
+#### 返回值
 - UIImage：输出的图像
 
 ```objective-c
