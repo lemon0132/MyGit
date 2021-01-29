@@ -2,10 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-## 介绍
-### 背景
 LiteKit是基于端推理框架LiteKitCore和端推理引擎PaddleLite，面向移动端工程师的AI能力解决方案。
 LiteKit旨在为客户端应用提供开箱即用的离线的AI能力，使产品快速的简单的接入AI能力，并将提供的AI能力应用于各种业务场景。
+
 目前已经支持的人像分割、手势识别、视频超分均来自百度各个产品线，已上线功能中，中台化输出的AI能力。
 
 ## 快速体验
@@ -13,7 +12,7 @@ LiteKit旨在为客户端应用提供开箱即用的离线的AI能力，使产�
 ### 效果展示
 | 手势识别 | 人像分割 |
 | --- | --- |
-| <div align=center><img width="800" height="400"  src="/Doc/Resources/1_5.gif"/></div> | <div align=center><img width="800" height="400"  src="/Doc/Resources/1_6.gif"/></div> |
+| <div align=center><img width="320" height="480"  src="/Doc/Resources/1_5.gif"/></div> | <div align=center><img width="320" height="315"  src="/Doc/Resources/1_6.gif"/></div> |
 
 视频超分
 | 超分前 | 超分后 |
