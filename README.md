@@ -49,7 +49,8 @@ open LiteKitDemo.xcworkspace
 ## 依赖关系
 
 LiteKit依赖关系如下：
-![依赖关系图](/Doc/Resources/1_4.png)
+<p align="center"><img width="500" src="/Doc/Resources/1_4.png"/></p>
+
 其中：
 1. PaddleLite层，[PaddleLite](https://github.com/PaddlePaddle/Paddle-Lite)是一个高性能、轻量级、灵活性强且易于扩展的深度学习推理框架，LiteKitSDK的AI能力底层基于PaddleLite引擎实现。
 2. LiteKitCore层，LiteKitCore是一种跨平台的，面向移动开发者的，AI工程化的综合解决方案。LiteKitCore作为端模型预测的统一接入层，目的是端模型的快速工程化集成，降低客户端RD在端运行AI模型的门槛和提升集成效率，同时也能更好实现基于端模型业务能力的快速横向输出。目前为提供了Objective C，Java，C++三种语言的API。
@@ -75,7 +76,7 @@ LiteKit的AI能力，主要包含3类接口：创建、执行、释放。
 使用时，先通过创建接口创建对应的预测引擎实例，之后可以通过执行接口进行预测，当使用完毕后需要对预测引擎实例进行释放。
 其中执行接口通常有多个，可以接受不同格式的数据输入，以适应相机帧、图像、视频解码数据等不同也业务场景。
 
-![API](/Doc/Resources/1_8.png)
+<p align="center"><img width="500" src="/Doc/Resources/1_8.png"/></p>
 
 [人像分割](/Doc/LiteKit接口文档_人像分割.md) <br>
 [手势识别](/Doc/LiteKit接口文档_手势识别.md) <br>
