@@ -53,10 +53,10 @@ LiteKit依赖关系如下：
 2. LiteKitCore层，LiteKitCore是一种跨平台的，面向移动开发者的，AI工程化的综合解决方案。LiteKitCore作为端模型预测的统一接入层，目的是端模型的快速工程化集成，降低客户端RD在端运行AI模型的门槛和提升集成效率，同时也能更好实现基于端模型业务能力的快速横向输出。目前为提供了Objective C，Java，C++三种语言的API。
 3. LiteKit层，视频超分，人像分割，手势识别，均称为LiteKit的业务SDK。每种业务SDK中，封装了对应AI能力的模型、预测的前后处理等逻辑。后续会产生更多覆盖其他AI场景的业务SDK。
 
-### 版权和许可证
-LiteKit由[MIT License](/blob/master/LICENSE)提供
+### 1. 版权和许可证
+LiteKit由[MIT License](LICENSE)提供
 
-### 1. 依赖
+### 2. 依赖
 
 |依赖 | iOS版本| Android版本 |
 |---|---|---|
@@ -64,7 +64,7 @@ LiteKit由[MIT License](/blob/master/LICENSE)提供
 |LiteKitPortraitSegmentation| 0.0.9| 0.0.9|
 |LiteKitAIVideoSuperResolution| 0.0.9| 0.0.9|
 
-### 2. 安装SDK
+### 3. 安装SDK
 [接入文档 for iOS](/Doc/LiteKit接入文档(for%20iOS).md) <br>
 [接入文档 for Android](/Doc/LiteKit接入文档(for%20Android).md)
 
