@@ -15,7 +15,7 @@ LiteKit旨在为客户端应用提供开箱即用的离线的AI能力，使产�
 视频超分
 | 超分前 | 超分后 |
 | --- | --- |
-| ![SR](/Doc/Resources/1_7.png) | ![SR](/Doc/Resources/1_7_2.png) |
+| ![SR](/Doc/Resources/1_7.jpeg) | ![SR](/Doc/Resources/1_7_2.png) |
 ### 1. Android - 扫码安装<br>
 ![QR_Code](/Doc/Resources/1_3.png)
 
@@ -83,8 +83,8 @@ LiteKit和LiteKitCore均遵守[MIT LICENSE](/LICENSE)开源协议。
 LiteKit目前版本不会收集任何用户数据和用户信息，也不需要申请用户的隐私权限。
 
 ## 交流与反馈
-<p align="center"><img width="200" height="200"  src="https://user-images.githubusercontent.com/45189361/64117959-1969de80-cdc9-11e9-84f7-e1c2849a004c.jpeg"/>&#8194;&#8194;&#8194;&#8194;&#8194;<img width="200" height="200" margin="500" 
-
+<p align="center"><img width="200" height="200"  src="https://user-images.githubusercontent.com/45189361/64117959-1969de80-cdc9-11e9-84f7-e1c2849a004c.jpeg"/></p>
+<p align="center">&#8194;&#8194;&#8194;微信公众号&#8194;&#8194;&#8194;&#8194;</p>
 
 
 # LiteKitCore接入文档
