@@ -55,26 +55,27 @@ LiteKit依赖关系如下：
 2. LiteKitCore层，LiteKitCore是一种跨平台的，面向移动开发者的，AI工程化的综合解决方案。LiteKitCore作为端模型预测的统一接入层，目的是端模型的快速工程化集成，降低客户端RD在端运行AI模型的门槛和提升集成效率，同时也能更好实现基于端模型业务能力的快速横向输出。目前为提供了Objective C，Java，C++三种语言的API。
 3. LiteKit层，视频超分，人像分割，手势识别，均称为LiteKit的业务SDK。每种业务SDK中，封装了对应AI能力的模型、预测的前后处理等逻辑。后续会产生更多覆盖其他AI场景的业务SDK。
 
-### 1. 版权和许可证
+### 1. 依赖
 LiteKit由[MIT License](LICENSE)提供
-
-### 2. 依赖
 
 |依赖 | iOS版本| Android版本 |
 |---|---|---|
-|LiteKitHandGestureDetection| 0.0.9| 0.0.9| 
-|LiteKitPortraitSegmentation| 0.0.9| 0.0.9|
-|LiteKitAIVideoSuperResolution| 0.0.9| 0.0.9|
+|LiteKitHandGestureDetection    | 0.1.0 | 0.1.0 | 
+|LiteKitPortraitSegmentation      | 0.1.0 | 0.1.0 |
+|LiteKitAIVideoSuperResolution  | 0.1.0 | 0.1.0 |
 
-### 3. 安装SDK
+### 2. 安装SDK
 [接入文档 for iOS](/Doc/LiteKit接入文档(for%20iOS).md) <br>
 [接入文档 for Android](/Doc/LiteKit接入文档(for%20Android).md)
 
 
 
 ## API
-//TODO 流程图
+LiteKit的AI能力，主要包含3类接口：创建、执行、释放。
+使用时，先通过创建接口创建对应的预测引擎实例，之后可以通过执行接口进行预测，当使用完毕后需要对预测引擎实例进行释放。
+其中执行接口通常有多个，可以接受不同格式的数据输入，以适应相机帧、图像、视频解码数据等不同也业务场景。
 
+![API](/Doc/Resources/1_8.png)
 
 [人像分割](/Doc/LiteKit接口文档_人像分割.md) <br>
 [手势识别](/Doc/LiteKit接口文档_手势识别.md) <br>
@@ -88,6 +89,9 @@ LiteKit目前版本不会收集任何用户数据和用户信息，也不需要�
 <p align="center"><img width="200" height="200"  src="https://user-images.githubusercontent.com/45189361/64117959-1969de80-cdc9-11e9-84f7-e1c2849a004c.jpeg"/></p>
 <p align="center">&#8194;&#8194;&#8194;微信公众号&#8194;&#8194;&#8194;&#8194;</p>
 
+
+## 版权和许可证
+LiteKit由[MIT License](LICENSE)提供
 
 # LiteKitCore接入文档
 ## 一、介绍
