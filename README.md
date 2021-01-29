@@ -82,8 +82,8 @@ LiteKit和LiteKitCore均遵守[MIT LICENSE](/LICENSE)开源协议。
 ## 隐私说明
 LiteKit目前版本不会收集任何用户数据和用户信息，也不需要申请用户的隐私权限。
 
-## 联系
-// TODO 联系
+## 交流与反馈
+<p align="center"><img width="200" height="200"  src="https://user-images.githubusercontent.com/45189361/64117959-1969de80-cdc9-11e9-84f7-e1c2849a004c.jpeg"/>&#8194;&#8194;&#8194;&#8194;&#8194;<img width="200" height="200" margin="500" 
 
 
 
