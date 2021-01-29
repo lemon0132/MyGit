@@ -1,4 +1,7 @@
 # LiteKit接入文档
+
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 ## 介绍
 ### 背景
 LiteKit是基于端推理框架LiteKitCore和端推理引擎PaddleLite，面向移动端工程师的AI能力解决方案。
