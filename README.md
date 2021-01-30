@@ -88,8 +88,14 @@ LiteKit的AI能力，主要包含3类接口：创建、执行、释放。
 LiteKit目前版本不会收集任何用户数据和用户信息，也不需要申请用户的隐私权限。
 
 ## 交流与反馈
-<p align="center"><img width="200" height="200"  src="https://user-images.githubusercontent.com/45189361/64117959-1969de80-cdc9-11e9-84f7-e1c2849a004c.jpeg"/><img width="200" height="200"  src="/Doc/Resources/1_9.png"/></p>
-<p align="center">&#8194;&#8194;&#8194;微信公众号&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;官方技术交流微信群&#8194;&#8194;&#8194;&#8194;</p>
+<p align="center">
+    <img width="200" height="200"  src="https://user-images.githubusercontent.com/45189361/64117959-1969de80-cdc9-11e9-84f7-e1c2849a004c.jpeg"/>
+    &#8194;&#8194;&#8194;&#8194;&#8194;
+    <img width="200" height="200"  src="/Doc/Resources/1_9.png"/>
+</p>
+<p align="center">
+&#8194;&#8194;&#8194;微信公众号&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;
+&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;官方技术交流微信群</p>
 
 
 ## 版权和许可证
