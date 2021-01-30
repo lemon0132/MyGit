@@ -121,6 +121,7 @@ LiteKitPSData中的data：output的数据部分，返回的数据大小w\*h=192\
     uint8_t *data; // output data
 ```
 ### 5. Demo code
+
 ```objective-c
 // 引入头文件
 #import <LiteKitPortraitSegmentation/LiteKitPortraitSegmentor.h>
@@ -205,9 +206,8 @@ public void release()
 
 
 ### 5. Demo Code
-### 人像分割
-引入头文件
 ```java
+// 引入头文件
 import com.baidu.litekit.PortraitSegmentation;
 import com.baidu.litekit.PortraitSegmentationConfig;
 
