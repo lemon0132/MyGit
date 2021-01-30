@@ -1,21 +1,21 @@
-# MMLCore接口文档(for Java API)
-## MMLBaseMachine
+# LiteKitCore接口文档(for Java API)
+## LiteKitBaseMachine
 Machine的基类 
-具体实现类为MMLPaddleLiteMachine
+具体实现类为LiteKitPaddleLiteMachine
 
 ```
 /**
  * Predict with input data
  *
  **/
-public abstract ArrayList<MMLData> predictWithInputData(ArrayList<MMLData> aInputData);
+public abstract ArrayList<LiteKitData> predictWithInputData(ArrayList<LiteKitData> aInputData);
 
 
 ```
 
-## MMLMachineConfig
+## LiteKitMachineConfig
 
-MMLMachineService通过加载config创建basemachine
+LiteKitMachineService通过加载config创建basemachine
 ```objectivec
  /**
   * 模型文件路径
@@ -23,7 +23,7 @@ MMLMachineService通过加载config创建basemachine
 public String modelPath;
 
 public enum MachineType {
-    MMLPaddleLite(2);
+    LiteKitPaddleLite(2);
 
     private MachineType(int value) {
         this.value = value;
@@ -39,28 +39,28 @@ public MachineType machineType;
 /**
  * machine_config
  */
-public MMLInferenceEngineConfig engineConifg;
+public LiteKitInferenceEngineConfig engineConifg;
 ```
 
-## MMLMachineService
+## LiteKitMachineService
 根据config的配置创建对应的machine
 
 ```
 /// async
-/// @param aConfig MML配置
-public static MMLBaseMachine loadMachineWithConfig(MMLMachineConfig aConfig) 
+/// @param aConfig LiteKit配置
+public static LiteKitBaseMachine loadMachineWithConfig(LiteKitMachineConfig aConfig) 
 
 ```
-## 封装的MML数据类型
-MMLTensorShape为MMLData中input & output的shape
+## 封装的LiteKit数据类型
+LiteKitTensorShape为LiteKitData中input & output的shape
 ```
-public class MMLTensorShape {
+public class LiteKitTensorShape {
     public int inputBatch;
     public int inputChannel;
     public int inputHeight;
     public int inputWidth;
 
-    public MMLTensorShape(int batch, int channel, int height, int width) {
+    public LiteKitTensorShape(int batch, int channel, int height, int width) {
         inputBatch = batch;
         inputChannel = channel;
         inputHeight = height;
@@ -70,13 +70,13 @@ public class MMLTensorShape {
 ```
 
 
-## MMLData
+## LiteKitData
 input & output 数据结构定义
 
 1. 枚举定义
 ```
 /**
- * MMLTensor数据 数据类型定义
+ * LiteKitTensor数据 数据类型定义
  */
 public enum Type {
     kFLOAT, // float
@@ -86,27 +86,27 @@ public enum Type {
 };
 ```
 
-MMLData的定义
+LiteKitData的定义
 ```
 
 /**
- * MMLData定义
+ * LiteKitData定义
  */
 /// 构造函数
-public MMLData(float[] in, int batch, int channel, int height, int width, int id) ;
-public MMLData(byte[] in, int batch, int channel, int height, int width, int id);
-public MMLData(int[] in, int batch, int channel, int height, int width, int id);
-public MMLData(long[] in, int batch, int channel, int height, int width, int id);
+public LiteKitData(float[] in, int batch, int channel, int height, int width, int id) ;
+public LiteKitData(byte[] in, int batch, int channel, int height, int width, int id);
+public LiteKitData(int[] in, int batch, int channel, int height, int width, int id);
+public LiteKitData(long[] in, int batch, int channel, int height, int width, int id);
 
  /**
  * 数据相关属性的getter and setter
  * dataType、dataTensor等的getter和setter方法
  */
 public Type getType();
-public MMLTensorShape getShape();
+public LiteKitTensorShape getShape();
 public int getInputGraphId();
 public void setType(Type type);
-public void setShape(MMLTensorShape shape);
+public void setShape(LiteKitTensorShape shape);
 public void setInputGraphId(int inputGraphId);
 
 /**

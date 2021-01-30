@@ -1,4 +1,4 @@
-# MMLKit接入文档(for Android)
+# LiteKit接入文档(for Android)
 ## 导入SDK
 |能力 |对应SDK | 
 |---|---|
@@ -10,7 +10,7 @@
 ## 添加第三方依赖
 |依赖 | 版本| 
 |---|---|
-|mmlkitdependency-0.0.9.aar| 0.0.9| 
+|LiteKitdependency-0.0.9.aar| 0.0.9| 
 |thirdpartydependency-0.0.9.aar| 0.0.9|
 
 
@@ -18,7 +18,7 @@
 无
 
 ## 配置环境
-1. 将依赖SDK放置在工程对应目录下，[参考](/MMLKit/MMLKitDemo/Android/README.md)
+1. 将依赖SDK放置在工程对应目录下，[参考](/LiteKit/LiteKitDemo/Android/README.md)
 <br>
 2. gradle增加配置引入SDK
 
@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    compile(name:'mmlkitdependency-0.0.9', ext:'aar')
+    compile(name:'LiteKitdependency-0.0.9', ext:'aar')
     compile(name:'thirdpartydependency-0.0.9', ext:'aar')
     
     compile(name:'gesturerecognize-0.0.9', ext:'aar')
@@ -48,15 +48,15 @@ dependencies {
 ### 人像分割
 引入头文件
 ```
-import com.baidu.mmlkit.portraitsegmentationsdk.MMLPortraitSegmentation;
-import com.baidu.mmlkit.portraitsegmentationsdk.MMLPortraitSegmentationConfig;
+import com.baidu.LiteKit.portraitsegmentationsdk.PortraitSegmentation;
+import com.baidu.LiteKit.portraitsegmentationsdk.PortraitSegmentationConfig;
 ```
 
 创建Config（模型地址）、创建Predictor
 ```
-MMLPortraitSegmentationConfig config = new MMLPortraitSegmentationConfig();
+PortraitSegmentationConfig config = new PortraitSegmentationConfig();
 config.setModelUrl(modelPath); // modelPath为模型文件路径（含模型文件名称）
-portraitSegmentation = new MMLPortraitSegmentation(config);
+portraitSegmentation = new PortraitSegmentation(config);
 ```
 
 执行预测

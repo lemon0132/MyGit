@@ -1,10 +1,10 @@
-# MMLKit接入文档(for iOS)
+# LiteKit接入文档(for iOS)
 ## 导入SDK
 |能力 |对应SDK | 
 |---|---|
-| 人像分割| MMLPortraitSegmentation.framework | 
-| 手势识别| MMLHandGestureDetection.framework | 
-| 视频超分| MMLAIVideoSuperResolution.framework | 
+| 人像分割| LiteKitPortraitSegmentation.framework | 
+| 手势识别| LiteKitHandGestureDetection.framework | 
+| 视频超分| LiteKitAIVideoSuperResolution.framework | 
 
 
 ## 添加第三方依赖
@@ -29,20 +29,20 @@
 <br>
 或者
 <br>
-通过pod引入，[参考](/MMLKit/MMLKitDemo/iOS/MMLKitDemo/Podfile)
+通过pod引入，[参考](/LiteKit/LiteKitDemo/iOS/LiteKitDemo/Podfile)
 ```
 # coding: utf-8
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios
 
-target 'MMLKitDemo' do
-  project './MMLKitDemo.xcodeproj'
+target 'LiteKitDemo' do
+  project './LiteKitDemo.xcodeproj'
     platform :ios, '10.0'
 
-    pod 'MMLHandGestureDetection', '~> 0.0.9'
-    pod 'MMLPortraitSegmentation', '~> 0.0.9'
-    pod 'MMLAIVideoSuperResolution', '~> 0.0.9'
+    pod 'LiteKitHandGestureDetection', '~> 0.0.9'
+    pod 'LiteKitPortraitSegmentation', '~> 0.0.9'
+    pod 'LiteKitAIVideoSuperResolution', '~> 0.0.9'
 end
 
 ```
@@ -51,16 +51,16 @@ end
 ### 人像分割
 引入头文件
 ```
-#import <MMLPortraitSegmentation/MMLPortraitSegmentor.h>
+#import <LiteKitPortraitSegmentation/LiteKitPortraitSegmentor.h>
 ```
 创建Config（模型地址）、创建Predictor
 ```
 NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"Segmentation.bundle/humanseg-cpu" ofType:@"nb"];
-self.portraitSegmentor = [MMLPortraitSegmentor create:modelPath error:&error];
+self.portraitSegmentor = [LiteKitPortraitSegmentor create:modelPath error:&error];
 ```
 执行Predict、获取Output
 ```
-MMLPSData *output = (MMLPSData *)[self.portraitSegmentor inferWithPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) error:nil];
+LiteKitPSData *output = (LiteKitPSData *)[self.portraitSegmentor inferWithPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) error:nil];
 ```
 释放Predictor
 ```
@@ -69,17 +69,17 @@ Predictor不需要特殊的释放操作
 ### 手势识别
 引入头文件
 ```
-#import <MMLHandGestureDetection/MMLHandGestureDetector.h>
+#import <LiteKitHandGestureDetection/LiteKitHandGestureDetector.h>
 ```
 创建Config（模型地址）、创建Predictor
 ```
 NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/HandGesture.bundle/"];
-self.gestureRecognizer = [MMLHandGestureDetector createGestureDetectorWithModelPath:modelPath error:&error];
+self.gestureRecognizer = [LiteKitHandGestureDetector createGestureDetectorWithModelPath:modelPath error:&error];
 ```
 执行Predict、获取Output
 ```
 //执行predict
-[self.gestureRecognizer detectWithUIImage:self.image complete:^(MMLHandGestureDetectResult *result, NSError *error){
+[self.gestureRecognizer detectWithUIImage:self.image complete:^(LiteKitHandGestureDetectResult *result, NSError *error){
     //result为获取的output
 }];
 ```
@@ -90,14 +90,14 @@ Predictor不需要特殊的释放操作
 ### 视频超分
 引入头文件
 ```
-#import <MMLAIVideoSuperResolution/MMLAIVideoSuperResolution.h>
+#import <LiteKitAIVideoSuperResolution/LiteKitAIVideoSuperResolution.h>
 ```
 创建Config（模型地址）、创建Predictor
 ```
 NSString *modelPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/SuperResolution.bundle"];
-MMLVideoSuperResolutionConfig *config = [[MMLVideoSuperResolutionConfig alloc] init];
+LiteKitVideoSuperResolutionConfig *config = [[LiteKitVideoSuperResolutionConfig alloc] init];
 config.modelDir = modelPath;
-MMLVideoSuperResolutionor *sVideo = [MMLVideoSuperResolutionor createInstanceWithConfig:config error:&error];
+LiteKitVideoSuperResolutionor *sVideo = [LiteKitVideoSuperResolutionor createInstanceWithConfig:config error:&error];
 ```
 执行Predict、获取Output
 ```
