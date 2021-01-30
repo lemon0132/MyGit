@@ -128,6 +128,21 @@ int v_stride;
 - v_data的length = v_stride\*height，<br>
 - 2\*u_stride = 2\*v_stride = y_stride >= width。
 
+#### 5. Demo code
+```objective-c
+// 引入头文件
+#import <LiteKitAIVideoSuperResolution/LiteKitAIVideoSuperResolution.h>
+
+// 创建Predictor
+LiteKitVideoSuperResolutionor *sVideo = [LiteKitVideoSuperResolutionor createVideoSuperResolutionorWithError:&error];
+
+// 执行predict，获取的newImg为output
+UIImage *newImg = [sVideo superResolutionWithUIImage:self.image scale:1.0 error:&error];
+
+// 释放Predictor
+// Predictor不需要特殊的释放操作
+```
+
 
 ## Android API
 
@@ -159,7 +174,7 @@ public static long init(Context context);
 
 /**
  * @desc 对bitmap执行超分
- * @param handle SrBridge的handler
+ * @param handle VideoSuperResolution的handler
  * @param in input数据bitmap
  * @param scale scale倍数
  * @return Bitmap output数据bitmap
@@ -183,7 +198,7 @@ scale：超分中对图像scale的倍数
 
 /**
  * @desc 对bitmap执行超分
- * @param handle SrBridge的handler
+ * @param handle VideoSuperResolution的handler
  * @param in rgbabytearray数据rgba的数据数组
  * @param height input的height
  * @param width input的width
@@ -203,8 +218,44 @@ public static native byte[] nativePredictRGBA(long handle, byte[] rgbabytearray,
 ```java
 
 /**
- * @desc 对SrBridge进行释放
+ * @desc 对VideoSuperResolution进行释放
  */
 public static native void nativeReleaseSrSdk(long handle);
 
+```
+
+### 4. DemoCode
+```java
+
+// 引入头文件
+import com.baidu.litekit.VideoSuperResolution;
+
+// 创建Predictor
+Long handle = VideoSuperResolution.init(this);
+
+// 执行Predict、获取Output
+
+Bitmap lowBitmap; // input待超分bitmap
+int byteCount = lowBitmap.getByteCount();
+ByteBuffer buf  = ByteBuffer.allocate(byteCount);
+lowBitmap.copyPixelsToBuffer(buf);
+byte[] rgba = buf.array();
+byte[] targetRGBA = VideoSuperResolution.nativePredictRGBA(
+                handle,      // 创建的predictorhandler
+                rgba,        // 待超分rgba数据
+                lowBitmap.getHeight(),
+                lowBitmap.getWidth(),
+                scale         // scale 倍数
+        );
+
+// or
+
+Bitmap bitmap2 = VideoSuperResolution.nativePredictBitmap(
+                handle,       // 创建的predictorhandler
+                lowBitmap,    // 待超分bitmap
+                scale         // scale 倍数
+        );
+
+// release SR machine
+VideoSuperResolution.nativeReleaseSrSdk(handle);
 ```

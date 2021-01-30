@@ -138,6 +138,25 @@ LiteKitHandGestureDetectResult包含一下属性：
 
 ```
 
+### 5. Demo Code
+```objective-c
+// 引入头文件
+#import <LiteKitHandGestureDetection/LiteKitHandGestureDetector.h>
+
+// 创建Predictor
+LiteKitHandGestureDetector *gestureRecognizer = [LiteKitHandGestureDetector createHandGestureDetectorWithError:&error];
+
+// 执行Predict、获取Output
+[gestureRecognizer detectWithUIImage:self.image complete:^(LiteKitHandGestureDetectResult *result, NSError *error) {
+    //result为获取的output
+}];
+
+// 释放Predictor
+// Predictor不需要特殊的释放操作
+```
+
+
+
 ## Android API
 ### 1. 创建实例
 对手势识别的HandGestureDetector进行初始化
@@ -220,4 +239,20 @@ public class HandGestureDetectResult {
 }
 ```
 
+### 5. Demo Code
+```java
+
+// 引入头文件
+import com.baidu.litekit.HandGestureDetectResult;
+import com.baidu.litekit.HandGestureDetector;
+
+// 创建Predictor
+HandGestureDetector.init(this);
+
+// 执行Predict、获取Output
+HandGestureDetectResult result = HandGestureDetector.detect(imageData);
+
+// 释放Predictor
+HandGestureDetector.release();
+```
 

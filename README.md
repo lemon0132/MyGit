@@ -59,16 +59,62 @@ LiteKit依赖关系如下：
 ### 1. 依赖
 LiteKit由[MIT License](LICENSE)提供
 
-|依赖 | iOS版本| Android版本 |
-|---|---|---|
-|LiteKitHandGestureDetection    | 0.1.0 | 0.1.0 | 
-|LiteKitPortraitSegmentation      | 0.1.0 | 0.1.0 |
-|LiteKitAIVideoSuperResolution  | 0.1.0 | 0.1.0 |
+| 功能 |依赖 | iOS版本| Android版本 |
+|---|---|---|---|
+| 手势识别 |LiteKitHandGestureDetection    | 0.1.0 | 0.1.0 | 
+| 人像分割 |LiteKitPortraitSegmentation      | 0.1.0 | 0.1.0 |
+| 视频超分 |LiteKitAIVideoSuperResolution  | 0.1.0 | 0.1.0 |
 
 ### 2. 安装SDK
-[接入文档 for iOS](/Doc/LiteKit接入文档(for%20iOS).md) <br>
-[接入文档 for Android](/Doc/LiteKit接入文档(for%20Android).md)
+#### iOS 安装SDK
+通过pod引入，[参考](/LiteKit/LiteKitDemo/iOS/LiteKitDemo/Podfile)
+```ruby
+# coding: utf-8
+source 'https://github.com/CocoaPods/Specs.git'
 
+platform :ios
+
+target 'LiteKitDemo' do
+  project './LiteKitDemo.xcodeproj'
+    platform :ios, '10.0'
+
+    pod 'LiteKitHandGestureDetection', '~> 0.1.0'
+    pod 'LiteKitPortraitSegmentation', '~> 0.1.0'
+    pod 'LiteKitVideoSuperResolution', '~> 0.1.0'
+end
+
+```
+
+#### Android 安装SDK
+1. 将依赖SDK放置在工程对应目录下
+- 首先需要[下载依赖的aar](https://gitee.com/paddlepaddle/LiteKit/tree/main/Android), 按照下面的格式放置
+- app / libs / gesturerecognize-0.1.0.aar
+- app / libs / superresolution-0.1.0.aar
+- app / libs / portraitsegmentation-0.1.0.aar
+- app / libs / thirdpartydependency-0.1.0.aar
+- app / libs / dependency-0.1.0.aar
+
+例如在LiteKit的demo工程中，放置在
+LiteKit/LiteKitDemo/Android/LiteKitDemo/app/libs/* 目录下。
+
+2. gradle增加配置引入SDK
+```groovy
+// search for aar + so
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile(name:'LiteKitdependency-0.1.0', ext:'aar')
+    compile(name:'thirdpartydependency-0.1.0', ext:'aar')
+    
+    compile(name:'gesturerecognize-0.1.0', ext:'aar')
+    compile(name:'portraitsegmentation-0.1.0', ext:'aar')
+    compile(name:'superresolution-0.1.0', ext:'aar')
+}
+```
 
 
 ## API

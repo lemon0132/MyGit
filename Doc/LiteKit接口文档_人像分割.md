@@ -120,7 +120,21 @@ LiteKitPSData中的data：output的数据部分，返回的数据大小w\*h=192\
 ```objective-c 
     uint8_t *data; // output data
 ```
+### 5. Demo code
+```objective-c
+// 引入头文件
+#import <LiteKitPortraitSegmentation/LiteKitPortraitSegmentor.h>
 
+// 创建Predictor
+LiteKitPortraitSegmentor *portraitSegmentor = [LiteKitPortraitSegmentor createPortraitSegmentorWithError:&error];
+
+// 执行Predict、获取Output
+LiteKitPSData *output = (LiteKitPSData *)[portraitSegmentor inferWithPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) error:nil];
+
+// 释放Predictor
+// Predictor不需要特殊的释放操作
+
+```
 
 
 
@@ -188,3 +202,22 @@ public void release()
 #### return
 人像分割返回为w\*h=192\*192的int[]，其中每一位的值为value = ( a << 24 | 255 << 16 | 255 << 8 | 255 )，
 可以通过Color.alpha(value)获取到一个0～255的alpha值，0表示该点不存在人像，255表示该点存在人像
+
+
+### 5. Demo Code
+### 人像分割
+引入头文件
+```java
+import com.baidu.litekit.PortraitSegmentation;
+import com.baidu.litekit.PortraitSegmentationConfig;
+
+// 创建Config（模型地址）、创建Predictor
+PortraitSegmentationConfig config = new PortraitSegmentationConfig(this);
+PortraitSegmentation portraitSegmentation = new PortraitSegmentation(config);
+
+// 执行预测，alpha_data为outputData
+int[] alpha_data = portraitSegmentation.predictor(inputData, rgbaImage.getWidth(), rgbaImage.getHeight());
+
+// 释放Predictor
+portraitSegmentation.release();
+```
