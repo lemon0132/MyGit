@@ -21,12 +21,18 @@ LiteKitCore Java API产物依赖及版本：
 
 
 ### 3. 构建步骤
- - 根据文档[MMLCore/MML/C++](MMLCore/MML/C%2B%2B/README.md), 编译生成`libmml_framework.so`
- - 根据文档[MMLCore/MML/Android](MMLCore/MML/Android/README.md), 编译生成`mmlcore-debug.aar`
+ - [构建LiteKitCore C++](/Doc/LiteKitCore接入文档(for%20Native%20C%2B%2B%20API%20on%20Android).md), 编译生成`liblitekit_framework.so`
+ - 将`liblitekit_framework.so`放在
+    - `./LiteKitCore/LiteKitCore/Android/litekitcore/src/main/cpp/libs/arm64-v8a/liblitekit_framework.so`
+    - `./LiteKitCore/LiteKitCore/Android/litekitcore/src/main/cpp/libs/armeabi-v7a/liblitekit_framework.so`
+- 执行android studio的按钮Build / Make Project编译
+- 输出产物
+  - `./LiteKitCore/LiteKitCore/Android/litekitcore/build/outputs/aar/litekitcore-debug.aar`
+  - `./LiteKitCore/LiteKitCore/Android/litekitcore/build/outputs/aar/litekitcore-release.aar`
 
 ## 二、集成
 ### 1. 导入SDK
-将MML Java的可执行文件`libmml_framework.so`和`mmlcore.aar`放在工程目录app/libs/下
+将LiteKit Java的可执行文件`liblitekit_framework.so`和`litekitcore.aar`放在工程目录app/libs/下
 
 
 ### 2. 添加第三方依赖
@@ -42,43 +48,43 @@ LiteKitCore Java API产物依赖及版本：
 无
 
 ## 三、使用
-   MML Java API执行推理的时候。
+   LiteKit Java API执行推理的时候。
    <br>
    首先，需要确定模型、所使用的backend、模型和backend是否匹配、以及其他config参数，并创建config。
    <br>
    然后，通过config 对Service进行load，由Service创建的machine直接管理预测backend，用户仅需要持有/释放machine，不需要对backend的实例进行直接管理。
    <br>
-   machine的预测接口input和output数据都是MMLData类型，MMLData是MML Java API对数据格式的封装，提供设置input数据和读取output数据的能力。
+   machine的预测接口input和output数据都是LiteKitData类型，LiteKitData是LiteKit Java API对数据格式的封装，提供设置input数据和读取output数据的能力。
    <br>
    machine使用完成后，需要手动执行释放操作，以释放machine持有的相关资源。
     
 
 ### 1) 引入头文件
 ```
-// import MML Java header
-import com.baidu.mmlcore.MMLBaseMachine;
-import com.baidu.mmlcore.MMLData;
-import com.baidu.mmlcore.MMLMachineConfig;
-import com.baidu.mmlcore.MMLMachineService;
-import com.baidu.mmlcore.MMLPaddleConfig;
-import com.baidu.mmlcore.MMLPaddleLiteConfig;
+// import LiteKit Java header
+import com.baidu.litekitcore.LiteKitBaseMachine;
+import com.baidu.litekitcore.LiteKitData;
+import com.baidu.litekitcore.LiteKitMachineConfig;
+import com.baidu.litekitcore.LiteKitMachineService;
+import com.baidu.litekitcore.LiteKitPaddleConfig;
+import com.baidu.litekitcore.LiteKitPaddleLiteConfig;
 ```
 
 ### 2) 创建Config （含模型转换）
 ```
-// 创建MML Java Config
-MMLMachineConfig machineConfig = new MMLMachineConfig();
-MMLPaddleConfig paddleConfig = new MMLPaddleConfig();
-paddleConfig.liteConfig = new MMLPaddleLiteConfig();
+// 创建LiteKitMachine
+LiteKitMachineConfig machineConfig = new LiteKitMachineConfig();
+LiteKitPaddleConfig paddleConfig = new LiteKitPaddleConfig();
+paddleConfig.liteConfig = new LiteKitPaddleLiteConfig();
 machineConfig.modelPath = modelPath();
-machineConfig.machineType = MMLMachineConfig.MachineType.MMLPaddleLite;
+machineConfig.machineType = LiteKitMachineConfig.MachineType.LiteKitPaddleLite;
 machineConfig.engineConifg = paddleConfig;
 ```
 
 ### 3) 创建Machine
 ```
 //创建machine
-MMLBaseMachine machine = MMLMachineService.loadMachineWithConfig(machineConfig);
+LiteKitBaseMachine machine = LiteKitMachineService.loadMachineWithConfig(machineConfig);
 ```
 ### 4) 前处理
 ```
@@ -89,15 +95,15 @@ float *inputData;// example input数据
 ### 5) 创建Input
 ```
 // create input data
-ArrayList<MMLData> input = new ArrayList<>();
-MMLData data = new MMLData(inputData, modelInputBatchSize, modelInputChannel, modelInputHeight, modelInputWidth, 0); // inputData为demo input data
+ArrayList<LiteKitData> input = new ArrayList<>();
+LiteKitData data = new LiteKitData(inputData, modelInputBatchSize, modelInputChannel, modelInputHeight, modelInputWidth, 0); // inputData为demo input data
 input.add(data);
 ```
 
 ### 6) Machine执行predict
 ```
 // 执行预测
-ArrayList<MMLData> output = machine.predictWithInputData(input);
+ArrayList<LiteKitData> output = machine.predictWithInputData(input);
 ```
 
 ### 7) 读取output

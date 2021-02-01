@@ -158,56 +158,33 @@ LiteKitCore是一种跨平台的，面向移动开发者的，AI工程化的综�
 支持平台：iOS、Android、Native C++ 。<br>
 
 
-### 3. 依赖和体积
-#### iOS平台
-###### Native C++ API
-
-| 依赖 | 版本 | 体积 | 
-|---|---|---|
-| LiteKit Native | 0.0.9 | 51.5MB(armv7), 51MB(arm64) |
-
-###### Objective-C API
-|依赖| 版本|体积 | 
-|---|---|---|
-|LiteKit|0.0.9|3.3MB|
-|opencv|3.4.1|128.6MB|
-|paddleLite|1.0.0|102.2MB|
-|paddle_mobile|1.0.0|14.1MB|
-|ProtocolBuffers|1.0.0|18.7MB|
-|ZipArchive|1.0.0|3.9MB|
-
-
-#### Java API 依赖
-|依赖|版本| 体积 | 
-|---|---|---|
-| LiteKit Native|-|51.5MB(armv7), 51MB(arm64) |
-
-### 4. Demo Project
+### 3. Demo Project
 iOS示例工程包含了Native C++ API和Objective-C API的demo调用示例，Native C++ API和Objective-C API分别包含CPU和GPU两种backend，一共4种加载和预测的方式。针对C++API（在iOS上）和Objective-C API的CPU/GPU backend分别是对齐的，模型的加载和预测能力一致。但是CPU和GPU backend之间是隔离的，预测所使用的模型是不一样的。
 
 #### 示例iOS工程部署
-1.组装工程 
 ```
 git clone https://github.com/PaddlePaddle/LiteKit.git
-cd PaddleLiteKitCore/LiteKitDemo/iOS
-open LiteKitDemo.xcodeproj
+cd ./LiteKitDemo/iOS/LiteKitDemo
+pod install
+open LiteKitDemo.xcworkspace 
 ```
-2.配置调试真机及Apple ID
-![图片](/Doc/Resources/1_1.png)
 
-3.运行示例工程
-![图片](/Doc/Resources/1_2.png)
 |类名 | 说明 | 
 |---|---|
 |ViewController |LiteKit（Objective-C & C++）以GPU、CPU作为backend的load及predict的demo code |
-| ViewController+LiteKitCore_CPP | LiteKit Native C++ API load demo code|
-| ViewController+LiteKitCore_OC | LiteKit Objective-C API load demo code|
+| ViewController+LiteKitCore_CPP | LiteKit Native C++ API demo code|
+| ViewController+LiteKitCore_OC | LiteKit Objective-C API demo code|
 
 #### 部署Android示例工程  
-1. 首先编译[LiteKitCore/LiteKit/C++](LiteKitCore/LiteKit/C%2B%2B/README.md), 生成`libLiteKit_framework.so`
-2. 然后编译[LiteKitCore/LiteKit/Android](LiteKitCore/LiteKit/Android/README.md), 生成`LiteKitCore-debug.aar`
-3. 最后编译[LiteKitCore/LiteKitDemo/Android](LiteKitCore/LiteKitDemo/Android/README.md), 通过Android studio 打开项目即可运行demo
-
+1. 根据[接入文档 for Native C++ API on Android](/Doc/LiteKitCore接入文档(for%20Native%20C%2B%2B%20API%20on%20Android).md), 生成`libLiteKit_framework.so`和`LiteKitCore-debug.aar`
+2. 需要[下载](https://gitee.com/paddlepaddle/LiteKit/tree/main/Android)依赖的so以及aar, 按照下面的格式放置：
+```
+./LiteKitDemo/Android/LiteKitDemo/app/libs/ gesturerecognize-0.0.9.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/ superresolution-0.0.9.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/ portraitsegmentation-0.0.9.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/ thirdpartydependency-0.0.9.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/ dependency-0.0.9.aar
+```
 ## 二、接口文档
 [接口文档 for Native C++ API](/Doc/LiteKitCore接口文档(for%20Native%20C%2B%2B%20API).md)
 <br>
