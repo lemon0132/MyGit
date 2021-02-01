@@ -41,7 +41,7 @@ open LiteKitDemo.xcworkspace
 
 
 #### Android平台
-1. 打开Android Studio，点击File->Open...，选择LiteKitDemo/Android目录
+1. 打开Android Studio，点击File->Open...，选择LiteKitDemo/Android/LiteKitDemo目录
 2. 参考[LiteKit README](/LiteKit/LiteKitDemo/Android/README.md)文档，下载并放置依赖aar至对应位置
 3. 点击Run安装运行到真机上（Demo中视频检测依赖摄像头输入）
 
@@ -147,6 +147,11 @@ LiteKit目前版本不会收集任何用户数据和用户信息，也不需要�
 
 ## 版权和许可证
 LiteKit由[MIT License](LICENSE)提供
+
+
+## [FAQ](/Doc/LiteKitFAQ.md)
+
+
 
 # LiteKitCore接入文档
 ## 一、介绍
