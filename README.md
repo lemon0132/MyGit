@@ -156,7 +156,6 @@ LiteKitCore是一种跨平台的，面向移动开发者的，AI工程化的综�
 
 ### 2. 兼容性
 支持平台：iOS、Android、Native C++ 。<br>
-支持Backend：支持PaddleMobile/Paddle-Lite/BML(LR/GBDT)等Backend。 
 
 
 ### 3. 依赖和体积

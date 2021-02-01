@@ -1,9 +1,9 @@
-# MMLCore接入文档 (for Java API)
+# LiteKitCore接入文档 (for Java API)
 
 
 ## 一、编译
 ### 1. 构建环境
-MML Java API产物依赖及版本：
+LiteKitCore Java API产物依赖及版本：
 |环境依赖 | 版本 |
 |---|---|  
 | ndk | android-ndk-r16b |

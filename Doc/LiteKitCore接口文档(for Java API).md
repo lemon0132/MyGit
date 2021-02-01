@@ -3,23 +3,35 @@
 Machine的基类 
 具体实现类为LiteKitPaddleLiteMachine
 
-```
+```java
 /**
  * Predict with input data
  *
- **/
+ * */
 public abstract ArrayList<LiteKitData> predictWithInputData(ArrayList<LiteKitData> aInputData);
 
+/**
+ * Run the Machine.
+ *
+ * */
+public native void run(long nativeMachineHandler);
+
+/**
+ * Delete C++ Machine object pointed by the input pointer, which is
+ * presented by a long value.
+ *
+ */
+public native void release(long nativeMachineHandler);
 
 ```
 
 ## LiteKitMachineConfig
 
 LiteKitMachineService通过加载config创建basemachine
-```objectivec
- /**
-  * 模型文件路径
-  */
+```java
+/**
+ * model file path
+ */
 public String modelPath;
 
 public enum MachineType {
@@ -32,7 +44,7 @@ public enum MachineType {
 }
 
 /**
- * 预测引擎类型
+ * machine type
  */
 public MachineType machineType;
 
@@ -45,15 +57,15 @@ public LiteKitInferenceEngineConfig engineConifg;
 ## LiteKitMachineService
 根据config的配置创建对应的machine
 
-```
+```java
 /// async
 /// @param aConfig LiteKit配置
-public static LiteKitBaseMachine loadMachineWithConfig(LiteKitMachineConfig aConfig) 
+public static LiteKitBaseMachine loadMachineWithConfig(LiteKitMachineConfig aConfig);
 
 ```
 ## 封装的LiteKit数据类型
 LiteKitTensorShape为LiteKitData中input & output的shape
-```
+```java
 public class LiteKitTensorShape {
     public int inputBatch;
     public int inputChannel;
@@ -74,21 +86,21 @@ public class LiteKitTensorShape {
 input & output 数据结构定义
 
 1. 枚举定义
-```
+```java
 /**
  * LiteKitTensor数据 数据类型定义
  */
-public enum Type {
-    kFLOAT, // float
-    kBYTE,  // Byte
-    kINT,   // int
-    kLONG   // long
-};
+ public enum Type {
+     kFLOAT,
+     kBYTE,
+     kINT,
+     kLONG
+ };
 ```
 
 LiteKitData的定义
-```
 
+```java
 /**
  * LiteKitData定义
  */

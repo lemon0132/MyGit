@@ -1,4 +1,4 @@
-# MMLCore接入文档 (for Native C++ API on Android)
+# LiteKitCore接入文档 (for Native C++ API on Android)
 
 
 ## 一、编译
