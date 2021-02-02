@@ -1,6 +1,14 @@
 # 手势识别接口文档
 手势识别能力由LiteKit HandGestureDetection SDK提供的，实时的手势检测能力。可以准确的检测手势所在位置的矩形坐标、手势类型、置信度。
 
+### 目录
+<a href="#iOSAPI">iOS API</a>
+<br>
+<a href="#AndroidAPI">Android API</a>
+<br>
+
+<div id="iOSAPI"></div>
+
 ## 检测内容
 - 手势类型
 - 手势位置的矩形坐标
@@ -156,14 +164,13 @@ LiteKitHandGestureDetector *gestureRecognizer = [LiteKitHandGestureDetector crea
 ```
 
 
+<div id="AndroidAPI"></div>
 
 ## Android API
 ### 1. 创建实例
 对手势识别的HandGestureDetector进行初始化
 ```java
-example：HandGestureDetector.init(this)
 
-其中：
 /**
  * @desc 对HandGestureDetector进行初始化
  * @param context 上下文contexts
@@ -194,7 +201,6 @@ public static HandGestureDetectResult detect(byte[] data, int imgWidth, int imgH
 
 通过Bitmap进行预测的接口，其中接口通过Bitmap接受图像数据，返回值意义同1）通过原始数据预测接口
 ```java
-example：HandGestureDetector.detect(scaleImage);
 
 其中：
 /**
@@ -207,9 +213,7 @@ public static HandGestureDetectResult detect(Bitmap image);
 ### 3. 释放
 使用完成之后，对手势识别进行释放
 ```java
-example:HandGestureDetector.release();
 
-其中
 /**
  * @desc 对HandGestureDetector中需要释放的资源进行释放
  */
