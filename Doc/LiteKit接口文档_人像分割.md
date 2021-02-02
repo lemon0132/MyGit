@@ -2,10 +2,11 @@
 人像分割能力由LiteKit 
 
 ## 目录
-[**iOS API**](## iOS API)
+<a href="#iOSAPI">iOS API</a>
+<a href="#AndroidAPI">Android API</a>
 
-[**Android API**](#"Android API")
 
+<div id="iOSAPI"></div>
 
 ## iOS API
 
@@ -146,9 +147,9 @@ LiteKitPSData *output = (LiteKitPSData *)[portraitSegmentor inferWithPixelBuffer
 
 
 
+<div id="AndroidAPI"></div>
 
 ## Android API
-<p id="Android API"></p>
 
 ### 1. 创建实例
 初始化人像分割的PortraitSegmentation
