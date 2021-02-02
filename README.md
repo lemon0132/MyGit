@@ -124,7 +124,7 @@ LiteKit的AI能力，主要包含3类接口：创建、执行、释放。
 <br>
 其中执行接口通常有多个，可以接受不同格式的数据输入，以适应相机帧、图像、视频解码数据等不同也业务场景。
 
-<p align="center"><img width="300" src="/Doc/Resources/1_8.png"/></p>
+<p align="center"><img width="450" src="/Doc/Resources/1_8.png"/></p>
 
 [人像分割 API文档](/Doc/LiteKit接口文档_人像分割.md) <br>
 [手势识别 API文档](/Doc/LiteKit接口文档_手势识别.md) <br>

@@ -7,7 +7,6 @@
 <a href="#AndroidAPI">Android API</a>
 <br>
 
-<div id="iOSAPI"></div>
 
 ## 检测内容
 - 手势类型
@@ -18,6 +17,8 @@
 | --- | --- |--- |--- |--- |--- |--- |
 | <B>图例</B> |  ![图片](/Doc/Resources/4_1.png) |  ![图片](/Doc/Resources/4_2.png) | ![图片](/Doc/Resources/4_3.png) |![图片](/Doc/Resources/4_4.png)  |![图片](/Doc/Resources/4_5.png) | ![图片](/Doc/Resources/4_6.png) | 
 
+
+<div id="iOSAPI"></div>
 
 ## iOS API
 
