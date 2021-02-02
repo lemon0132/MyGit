@@ -89,14 +89,14 @@ end
 1. 将依赖SDK放置在工程对应目录下
 - 首先需要[下载依赖的aar](https://gitee.com/paddlepaddle/LiteKit/tree/main/Android), 按照下面的格式放置
 ```
-app/libs/gesturerecognize-0.1.0.aar
-app/libs/superresolution-0.1.0.aar
-app/libs/portraitsegmentation-0.1.0.aar
-app/libs/thirdpartydependency-0.1.0.aar
-app/libs/dependency-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemoapp/libs/gesturerecognize-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemoapp/libs/superresolution-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemoapp/libs/portraitsegmentation-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemoapp/libs/thirdpartydependency-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemoapp/libs/dependency-0.1.0.aar
 ```
 
-例如在LiteKit的demo工程中，放置在`LiteKit/LiteKitDemo/Android/LiteKitDemo/app/libs/*` 目录下。
+例如在LiteKit的demo工程中，放置在`./LiteKitDemo/Android/LiteKitDemo/app/libs/*` 目录下。
 
 2. gradle增加配置引入SDK
 ```groovy
@@ -184,16 +184,17 @@ open LiteKitDemo.xcworkspace
 
 #### 部署Android示例工程  
 1. 根据[接入文档 for Native C++ API on Android](/Doc/LiteKitCore接入文档(for%20Native%20C%2B%2B%20API%20on%20Android).md), 生成`libLiteKit_framework.so`和`LiteKitCore-debug.aar`
+放置在`./LiteKitDemo/Android/LiteKitDemo/app/libs/litekitcore-debug.aar`路径下。
 2. 需要[下载](https://gitee.com/paddlepaddle/LiteKit/tree/main/Android)依赖的so以及aar, 按照下面的格式放置：
 ```
-./LiteKitDemo/Android/LiteKitDemo/app/libs/gesturerecognize-0.0.9.aar
-./LiteKitDemo/Android/LiteKitDemo/app/libs/superresolution-0.0.9.aar
-./LiteKitDemo/Android/LiteKitDemo/app/libs/portraitsegmentation-0.0.9.aar
-./LiteKitDemo/Android/LiteKitDemo/app/libs/thirdpartydependency-0.0.9.aar
-./LiteKitDemo/Android/LiteKitDemo/app/libs/dependency-0.0.9.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/gesturerecognize-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/superresolution-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/portraitsegmentation-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/thirdpartydependency-0.1.0.aar
+./LiteKitDemo/Android/LiteKitDemo/app/libs/dependency-0.1.0.aar
 ```
 3. 需要[下载](https://gitee.com/paddlepaddle/LiteKit/tree/main/Android/LiteKitCoreDemoDependency/0.1.0)Demo依赖的opencv.so和libgnustl_shared.so，
-放置在`./LiteKitDemo/Android/LiteKitDemo/app/src/main/cpp/libs`下
+放置在`./LiteKitDemo/Android/LiteKitDemo/app/src/main/cpp/libs`路径下。
 ## 二、接口文档
 [接口文档 for Native C++ API](/Doc/LiteKitCore接口文档(for%20Native%20C%2B%2B%20API).md)
 <br>

@@ -1,6 +1,10 @@
 # 人像分割接口文档
 人像分割能力由LiteKit 
 
+## 目录
+[**iOS API**](#iOS)
+[**Android API**](#Android)
+
 
 ## iOS API
 
