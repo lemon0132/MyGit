@@ -4,7 +4,7 @@
 ## 目录
 [**iOS API**](## iOS API)
 
-[**Android API**](## "Android API")
+[**Android API**](#"Android API")
 
 
 ## iOS API
@@ -148,6 +148,7 @@ LiteKitPSData *output = (LiteKitPSData *)[portraitSegmentor inferWithPixelBuffer
 
 
 ## Android API
+<p id="Android API"></p>
 
 ### 1. 创建实例
 初始化人像分割的PortraitSegmentation
