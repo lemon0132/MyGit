@@ -2,8 +2,8 @@
 人像分割能力由LiteKit 
 
 ## 目录
-[**iOS API**](#iOS)
-[**Android API**](#Android)
+[**iOS API**](#iOS API)
+[**Android API**](#Android API)
 
 
 ## iOS API
