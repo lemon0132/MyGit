@@ -203,7 +203,6 @@ public static HandGestureDetectResult detect(byte[] data, int imgWidth, int imgH
 通过Bitmap进行预测的接口，其中接口通过Bitmap接受图像数据，返回值意义同1）通过原始数据预测接口
 ```java
 
-其中：
 /**
  * @desc 通过bitmap进行预测
  * @param image 待预测的内容的bitmap
