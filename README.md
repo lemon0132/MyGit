@@ -94,7 +94,7 @@ git clone https://gitee.com/paddlepaddle/LiteKit
 2. 修改LiteKitDemo工程local.properties（文件位置在`./LiteKitDemo/Android/LiteKitDemo/local.properties`)，添加MAVEN_REPO_LOCAL属性，值为第1步中clone的gitee仓库地址。
 例如：
 ```
-MAVEN_REPO_LOCAL = XXXXXXX/LiteKit
+MAVEN_REPO_LOCAL = XXXXXXX
 ```
 
 3. 在工程的gradle中增加配置LocalMaven，例如`./LiteKitDemo/Android/LiteKitDemo/build.gradle`
