@@ -208,7 +208,7 @@ git clone https://github.com/PaddlePaddle/LiteKit.git
 [opencv2](https://gitee.com/paddlepaddle/LiteKit/tree/main/iOS/LiteKitCoreOCDependency/opencv2/0.0.9)、
 [paddle_mobile](https://gitee.com/paddlepaddle/LiteKit/tree/main/iOS/LiteKitCoreOCDependency/paddle_mobile/0.0.9)、
 [ProtocolBuffers](https://gitee.com/paddlepaddle/LiteKit/tree/main/iOS/LiteKitCoreOCDependency/ProtocolBuffers/0.0.9)、
-[ZipArchive](https://gitee.com/paddlepaddle/LiteKit/tree/main/iOS/LiteKitCoreOCDependency/ZipArchive/0.0.9)、
+[ZipArchive](https://gitee.com/paddlepaddle/LiteKit/tree/main/iOS/LiteKitCoreOCDependency/ZipArchive/0.0.9)
 到文件夹`./LiteKitCore/LiteKitCoreDemo/iOS/Dependence/*`
 
 3. 添加LiteKitCore依赖
