@@ -15,7 +15,7 @@ LiteKit旨在为客户端应用提供开箱即用的离线的AI能力，使产�
 | <div align=center><img width="320" height="480"  src="/Doc/Resources/1_5.gif"/></div> | <div align=center><img width="320" height="315"  src="/Doc/Resources/1_6.gif"/></div> |
 
 视频超分
-| 超分前 | 超分后 |
+| 增强前 | 增强后 |
 | --- | --- |
 | ![SR](/Doc/Resources/1_7.png) | ![SR](/Doc/Resources/1_7_2.png) |
 ### 1. Android - 扫码安装<br>
