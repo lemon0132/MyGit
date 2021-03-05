@@ -227,7 +227,7 @@ open LiteKitCoreDemo.xcworkspace
 #### 部署Android示例工程  
 - 环境部署
 |环境 | 版本 | 
-|---|---|
+| --- | --- |
 | NDK |[android-ndk-r16b](https://developer.android.google.cn/ndk/downloads/older_releases) |
 | cmake | cmake 3.15.0 |
 在~/.bashrc里指定cmake路径`ANDROID_CMAKE`和NDK路径`ANDROID_NDK`变量
