@@ -59,7 +59,7 @@ MAVEN_REPO_LOCAL = XXXXXXX
 ## 安装SDK
 
 LiteKit依赖关系如下：
-<p align="center"><img width="500" src="/Doc/Resources/1_4.png"/></p>
+<p align="center"><img width="450" src="/Doc/Resources/1_4.png"/></p>
 
 其中：
 1. PaddleLite层，[PaddleLite](https://github.com/PaddlePaddle/Paddle-Lite)是一个高性能、轻量级、灵活性强且易于扩展的深度学习推理框架，LiteKitSDK的AI能力底层基于PaddleLite引擎实现。
